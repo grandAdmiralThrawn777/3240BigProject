@@ -1,0 +1,6 @@
+# Preserve exact bytes in parser fixtures, recorded evidence and ZIP hashes.
+* -text
+*.pdf binary
+*.pptx binary
+*.zip binary
+*.bin binary
