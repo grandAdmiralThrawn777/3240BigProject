@@ -18,7 +18,6 @@ int main(int argc, char **argv) {
     }
     char line[256];
     int64_t volume = 0, remainder = 0;
-    (void)setvbuf(stdout, NULL, _IOLBF, 0U);
     puts("volume,raw,underflow,overflow,level,remainder");
     (void)fflush(stdout);
     int record;

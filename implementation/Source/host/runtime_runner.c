@@ -41,7 +41,6 @@ int main(int argc, char **argv) {
     tank_runtime runtime;
     tank_runtime_init(&runtime, 100U);
     char line[4096];
-    (void)setvbuf(stdout, NULL, _IOLBF, 0U);
     puts("now,ran,open,fault,low,high,accepted,rejected,overflows,deadlines,auth,bytes,queued");
     (void)fflush(stdout);
     int record;
