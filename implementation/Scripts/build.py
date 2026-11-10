@@ -24,6 +24,8 @@ def build(cc=None, firmware=False, sanitize=False):
     common = ['-std=c17', '-O2', '-g', '-ffunction-sections', '-fdata-sections',
               '-ISource/include', '-IThird_Party/mbedtls/include',
               '-IThird_Party/mbedtls/library', '-DMBEDTLS_CONFIG_FILE="tank_mbed_config.h"']
+    if os.name == 'nt' and not firmware:
+        common += ['-D_CRT_SECURE_NO_WARNINGS']
     strict = ['-Wall', '-Wextra', '-Werror', '-Wconversion', '-Wshadow', '-Wstrict-prototypes', '-Wpedantic']
     if firmware:
         common += ['-mcpu=cortex-m4', '-mthumb', '-mfloat-abi=soft', '-ffreestanding', '-fno-common']

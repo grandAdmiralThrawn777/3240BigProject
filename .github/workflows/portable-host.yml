@@ -11,7 +11,7 @@ jobs:
           - {os: ubuntu-24.04, arch: x64, cc: gcc}
           - {os: ubuntu-24.04-arm, arch: arm64, cc: gcc}
           - {os: macos-15-intel, arch: x64, cc: clang}
-          - {os: macos-14, arch: arm64, cc: clang}
+          - {os: macos-15, arch: arm64, cc: clang}
           - {os: windows-2025, arch: x64, cc: clang}
           - {os: windows-11-arm, arch: arm64, cc: clang}
     runs-on: ${{ matrix.os }}
