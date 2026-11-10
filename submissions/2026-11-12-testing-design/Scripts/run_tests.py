@@ -42,6 +42,8 @@ def main():
     try:
         report['compiler_version'] = execute('compiler_version',[cc,'--version'])
         flags = ['-std=c17','-Wall','-Wextra','-Werror','-Wconversion','-Wshadow','-Wstrict-prototypes','-Wpedantic','-O1','-g','-ISource/include']
+        if os.name == 'nt':
+            flags += ['-D_CRT_SECURE_NO_WARNINGS']
         if args.sanitize != 'none':
             checks = 'undefined,bounds' if args.sanitize == 'undefined' else 'address,undefined'
             flags += ['-fsanitize='+checks,'-fno-sanitize-recover=all','-fno-omit-frame-pointer']

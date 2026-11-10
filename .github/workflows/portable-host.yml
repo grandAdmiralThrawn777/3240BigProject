@@ -1,5 +1,10 @@
 name: x86-64 and ARM64 host tests
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths: ['implementation/**', '.github/workflows/**', 'submissions/**/Source/**', 'submissions/**/Scripts/**']
+  pull_request:
+    paths: ['implementation/**', '.github/workflows/**', 'submissions/**/Source/**', 'submissions/**/Scripts/**']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -30,6 +35,8 @@ jobs:
         run: python implementation/Scripts/generate_runtime_tests.py
       - name: Baseline control and input files
         run: python implementation/Scripts/run_baseline.py --cc ${{ matrix.cc }}
+      - name: November 12 submission baseline
+        run: python submissions/2026-11-12-testing-design/Scripts/run_tests.py --cc ${{ matrix.cc }}
       - name: Runtime, serial, HMAC and model tests
         run: python implementation/Scripts/test_runtime.py --cc ${{ matrix.cc }}
       - name: Closed-loop C tank scenarios
@@ -45,3 +52,4 @@ jobs:
             implementation/Runs/**
             implementation/Build/**/build.json
             implementation/Build/**/target.json
+            submissions/2026-11-12-testing-design/Runs/**
