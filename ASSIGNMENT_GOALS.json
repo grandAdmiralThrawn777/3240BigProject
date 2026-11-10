@@ -1,0 +1,60 @@
+{
+  "project": "CYCS 3240 Secure Embedded Water Tank Controller",
+  "author": "Finley Burns",
+  "updated": "2026-11-10",
+  "goal_engine": "One active goal at a time; activate queued goals in deadline order.",
+  "shared_requirements": [
+    "Direct first-person prose, plain headings, concrete explanations and minimal filler",
+    "Separate completed results from planned or unverified features",
+    "Keep November 12 submission independent and ready to submit",
+    "Portable Windows, macOS and Linux host workflow; document actual platform verification",
+    "Read test data from files and preserve raw evidence",
+    "Do not include private conversation or handoff attachments in course submissions",
+    "Native x86-64 and ARM64 host build routes; Cortex-M4 ARM firmware; record actual architecture and execution status",
+    "Synchronize source, submissions and evidence to GitHub without private handoff or chat"
+  ],
+  "goals": [
+    {
+      "id": "testing_design",
+      "deadline": "2026-11-12",
+      "status": "complete",
+      "objective": "Deliver the testing design PDF and organized supporting files.",
+      "pdf": "output/CYCS3240_Testing_Design/Report/Testing_Design_Finley_Burns.pdf",
+      "package": "output/CYCS3240_Testing_Design_Finley_Burns.zip",
+      "acceptance": "All test problems, methods, parameters, expectations and reasons included; prose reviewed; seven pages visually checked; ZIP and hashes verified."
+    },
+    {
+      "id": "design_presentation",
+      "deadline": "2026-11-17",
+      "deadline_source": "User confirmed November 17 as presentation date.",
+      "status": "complete",
+      "objective": "Deliver an editable design presentation and speaking notes.",
+      "acceptance": "Explain scope, approach, control decisions, interfaces, security design, tests and current progress; accurate status; readable slides; inspect every rendered slide.",
+      "package": "output/CYCS3240_Design_Presentation_2026-11-17.zip"
+    },
+    {
+      "id": "comprehensive_design",
+      "deadline": "2026-11-19",
+      "status": "complete",
+      "objective": "Deliver the comprehensive design PDF with detailed pseudocode, module descriptions, interfaces, dependencies and error behavior.",
+      "current_file": "next-submissions/Design_2026-11-19/Comprehensive_Design_Finley_Burns.pdf",
+      "acceptance": "Enough detail to implement the system; consistent with testing design; code versus planned modules clearly distinguished; prose and all rendered pages reviewed.",
+      "package": "output/CYCS3240_Comprehensive_Design_2026-11-19.zip"
+    },
+    {
+      "id": "final_report",
+      "deadline_week": "2026-12-07",
+      "status": "active_implementation_required",
+      "objective": "Finish the implementation and testing, then deliver the comprehensive final IEEE-format report, source, results and user guide.",
+      "current_source": "next-submissions/Authoring/Final_Report_DRAFT.tex",
+      "acceptance": "Actual results for remaining modules and goals analysis; accurate limitations; authentic IEEE template; complete reproducible source and user guide; no unfinished feature described as tested. Draft alone does not complete this goal."
+    },
+    {
+      "id": "final_presentation",
+      "deadline_week": "2026-12-07",
+      "status": "queued",
+      "objective": "Deliver final presentation slides and speaking notes based on the completed project and actual results.",
+      "acceptance": "Explain implementation, measured behavior, examples, goal completion and limits; match final report; inspect every rendered slide. Draft alone does not complete this goal."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+CYCS 3240 - Testing Design - Finley Burns
+Due November 12, 2026
+
+READ
+Report/Testing_Design_Finley_Burns.pdf is the single submission document.
+It includes the testing design, current evidence, platform instructions,
+file formats, acceptance criteria, and references.
+
+RUN THE HOST TESTS
+Extract the entire ZIP first. Install Python 3.9 or newer and a C17 GCC or
+Clang compiler. Run from the extracted submission folder:
+
+Windows PowerShell:
+    py -3 Scripts/run_tests.py --cc gcc
+
+macOS or Linux:
+    python3 Scripts/run_tests.py --cc cc
+
+If Python is named python instead of py/python3 on your machine, use that
+name. For a compiler outside PATH, provide its quoted complete executable
+path after --cc. Do not include compiler flags in --cc or CC.
+
+The host suite uses only Python's standard library and compiles locally.
+It requires no Bash, WSL, ARM toolchain, Renode, pip packages or network.
+It creates a fresh Runs/ directory for each execution and exits nonzero
+on failure. It does not modify the recorded Evidence/ directory.
+
+Expected successful host checks:
+    15 original plus 54 additional independent C control cases
+    18 persistent-state sequence steps
+    23 parser fixtures (4 accepted, 18 rejected, 1 deliberate mismatch)
+    3 invocation errors (missing file, missing argument, extra argument)
+
+OPTIONAL DIAGNOSTIC BUILD
+    python3 Scripts/run_tests.py --sanitize undefined
+    python3 Scripts/run_tests.py --sanitize address
+Use py -3 instead on Windows. Requires compiler sanitizer runtimes.
+Unsupported runtimes are reported as failures; there is no silent fallback.
+The installed Windows GCC lacks libubsan; that attempt is in Evidence/.
+
+FIRMWARE
+    python3 Scripts/build_firmware.py
+Requires arm-none-eabi-gcc (or --cc with its complete executable path).
+Then, from a configured Renode test environment at the submission root:
+    renode-test -P 0 Source/tests/c-controller.robot
+Windows Renode 1.17 Robot automation requires its Cygwin/Python environment
+or the Linux route under WSL. A PowerShell-only Renode test is not supplied.
+macOS/Linux use Renode's installed test launcher. See PDF for dependencies.
+The firmware still uses a fixed reading; no live tank feedback is claimed.
+
+CONTENTS
+Report/        One PDF with the testing design and running instructions.
+Source/        C17 controller, host runners, firmware, Renode test/config.
+Test_Data/     Executable host fixtures; separately marked planned data.
+Scripts/       Portable Python build/run tools and fixture/PDF generators.
+Evidence/      Actual Windows host logs and recorded validation limits.
+SHA256SUMS.txt Inventory of all delivered files except itself.
+
+Test_Data/Planned/ contains inputs for future features. The host command
+does not execute those integration tests. The public test key is a fixture.
+No private chats, transferred attachments, or older reports are included.
+
+OPTIONAL AUTHORING
+Scripts/generate_test_data.py recreates fixtures; normally use shipped files.
+Scripts/build_report.py recreates the PDF and needs the reportlab package.
+Neither script is needed to execute the C tests.
+
+PLATFORM STATUS
+Current host suite: run on Windows with MinGW GCC 16.1.0.
+macOS: older baseline passed previously; expanded suite not yet run there.
+Linux: portable entry point supplied; execution not verified in this session.
+ARM/Renode: historical macOS result only; not run in this Windows session.
+
+PROCESSOR SUPPORT
+The host source is intended for native x86-64 and ARM64 builds on each OS.
+Use the native compiler for your processor. Windows x86-64 is verified in
+this milestone; other host/processor pairs remain unverified here.
+The separate embedded target is 32-bit Cortex-M4 ARM, not ARM64.
+The embedded-NUL input is named embedded_nul.csv to avoid a Windows
+reserved filename. Its bytes and expected rejection are unchanged.

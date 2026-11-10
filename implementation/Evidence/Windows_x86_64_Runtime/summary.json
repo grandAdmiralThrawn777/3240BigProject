@@ -1,0 +1,328 @@
+{
+  "status": "PASS",
+  "date": "2026-11-10T19:39:29.594332+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "architecture": "AMD64",
+  "checks": [
+    {
+      "id": "age_and_recovery",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\age_and_recovery.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "deadline",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\deadline.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "wrap",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\wrap.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "periods",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\periods.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_valid",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_valid.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_wrong_key",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_wrong_key.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_modified",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_modified.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_equal",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_equal.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_reversed",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_reversed.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_range",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_range.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_uint_overflow",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_uint_overflow.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_huge_integer",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_huge_integer.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_leading_zero",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_leading_zero.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_negative",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_negative.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_plus",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_plus.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_space",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_space.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_nul",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_nul.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_nonhex",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_nonhex.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_uppercase",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_uppercase.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_short_tag",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_short_tag.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_long_tag",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_long_tag.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_missing_tag",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_missing_tag.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_extra_field",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_extra_field.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "command_crlf",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\command_crlf.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "apply_next_tick",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\apply_next_tick.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "replay",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\replay.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "timeout_recovery",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\timeout_recovery.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "overflow_recovery",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\overflow_recovery.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "queue_256",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\queue_256.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "flood_safety",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\runtime_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\flood_safety.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "hmac_vectors",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\hmac_runner.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\hmac.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "id": "model_units",
+      "command": [
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Build\\amd64\\tank_model.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\implementation\\Test_Data\\Runtime\\model.csv"
+      ],
+      "exit": 0,
+      "expected_exit": 0,
+      "passed": true
+    }
+  ]
+}

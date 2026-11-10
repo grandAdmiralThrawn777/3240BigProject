@@ -1,0 +1,4 @@
+# profile,time_ms,event,value
+demand,200000,drain_lps,0.5
+demand,400000,drain_lps,1.5
+stuck_open,10000,force_valve_open,1

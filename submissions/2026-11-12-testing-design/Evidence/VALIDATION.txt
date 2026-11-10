@@ -1,0 +1,37 @@
+NOVEMBER 9 TESTING DESIGN VALIDATION
+
+Windows host run: Windows_Host/summary.json and its stdout/stderr logs.
+32 process checks passed: compiler version, two builds, three control/sequence
+files, 23 parser fixtures, and three invocation errors. Data contain 69
+independent controller cases and 18 persistent-state steps.
+
+GCC 16.1.0 MinGW-w64, C17, -O1 -g, warnings treated as errors.
+Undefined/bounds sanitizer attempt: Windows_Sanitizer_Attempt/.
+Build failed because the installed linker could not find -lubsan. No sanitized
+program was executed. No sanitizer pass is claimed.
+
+Source controller, header, firmware, startup/linker files, Renode test/config,
+and original control.csv match the hash-verified handoff byte for byte.
+Host parser changes: binary file opening and explicit CRLF blank-line support.
+The new sequence runner carries actual state until a reset row.
+
+Historical handoff evidence reports October 28 macOS baseline results:
+15 independent cases, 8 input rejections and 1 fixed-reading Renode test.
+Those historical tests were not rerun on macOS in this session. Expanded
+macOS/Linux execution and current ARM/Renode execution remain unverified.
+
+RFC 4231 SHA256 fixture digests were independently checked with Python hmac.
+That validates fixture data, not the future firmware's authentication.
+Planned tank, sensor-age, command and timing inputs are not counted as passes.
+
+The seven-page PDF was rendered and all pages visually inspected.
+No private chat history, handoff screenshots, or prior reports are delivered.
+
+Fresh ZIP extraction into a path with spaces and parentheses also passed
+all 32 process checks when invoked from outside the extracted folder.
+See Windows_Fresh_Extraction/ for the complete recorded run.
+
+A Linux launch was attempted with wsl -d Ubuntu --exec uname -srm.
+It failed before a Linux process ran: WSL2 reported
+Wsl/Service/CreateInstance/CreateVm/HCS/HCS_E_HYPERV_NOT_INSTALLED.
+No Windows virtualization settings were changed.

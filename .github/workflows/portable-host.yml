@@ -1,0 +1,45 @@
+name: x86-64 and ARM64 host tests
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  host:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-24.04, arch: x64, cc: gcc}
+          - {os: ubuntu-24.04-arm, arch: arm64, cc: gcc}
+          - {os: macos-15-intel, arch: x64, cc: clang}
+          - {os: macos-14, arch: arm64, cc: clang}
+          - {os: windows-2025, arch: x64, cc: clang}
+          - {os: windows-11-arm, arch: arm64, cc: clang}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: ${{ matrix.arch }}
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: ${{ matrix.arch }}
+      - name: Generate file fixtures
+        run: python implementation/Scripts/generate_runtime_tests.py
+      - name: Baseline control and input files
+        run: python implementation/Scripts/run_baseline.py --cc ${{ matrix.cc }}
+      - name: Runtime, serial, HMAC and model tests
+        run: python implementation/Scripts/test_runtime.py --cc ${{ matrix.cc }}
+      - name: Address and undefined-behavior checks
+        if: runner.os != 'Windows'
+        run: python implementation/Scripts/test_runtime.py --cc ${{ matrix.cc }} --sanitize
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidence-${{ matrix.os }}-${{ matrix.arch }}
+          path: |
+            implementation/Runs/**
+            implementation/Build/**/build.json
+            implementation/Build/**/target.json

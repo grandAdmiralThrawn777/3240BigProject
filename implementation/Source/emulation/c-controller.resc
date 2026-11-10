@@ -1,0 +1,3 @@
+mach create "c-water-tank"
+machine LoadPlatformDescription @platforms/cpus/stm32f4.repl
+sysbus LoadELF $ORIGIN/../build/c/controller.elf

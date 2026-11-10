@@ -1,0 +1,18 @@
+CYCS 3240 DESIGN PRESENTATION
+Presentation date: November 17, 2026
+
+Open Design_Presentation_Finley_Burns_Reviewed.pptx.
+Nine editable slides. Speaking notes are embedded in each slide and included
+in Speaking_Notes.txt. Plan roughly six minutes, depending on speaking pace.
+
+The deck explains the design and distinguishes the completed host tests from
+planned firmware/authentication/tank work. Update only verified progress if
+additional implementation finishes before presentation day.
+
+The deck uses Arial and standard text objects. It was rendered with Artifact
+Tool and inspected slide by slide. It has not been opened in PowerPoint or
+LibreOffice during this session. Check the presentation display on the machine
+you will use in class, including Presenter View for the notes.
+
+Sources are in the speaker notes. The November 12 source/test package contains
+the actual host evidence. This deck has no embedded executables or macros.

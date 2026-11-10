@@ -1,0 +1,14 @@
+CYCS 3240 COMPREHENSIVE DESIGN
+Due November 19, 2026
+
+Read Comprehensive_Design_Finley_Burns.pdf.
+Seven pages covering module boundaries, data types, interfaces, detailed
+pseudocode, sensor/board access, serial/authentication design, tank model,
+error behavior and implementation/testing order.
+
+This is a design deliverable. It clearly identifies future modules and does
+not present their behavior as measured results. The tested baseline source
+and raw evidence remain in the separate November 12 submission.
+
+Authoring/build_design.py recreates the PDF with Python and ReportLab.
+The exact November 12 PDF and ZIP were preserved during this work.
