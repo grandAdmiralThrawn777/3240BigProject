@@ -1,4 +1,5 @@
 #include "runtime.h"
+#include "file_input.h"
 #include <errno.h>
 #include <inttypes.h>
 #include <stdio.h>
@@ -11,17 +12,24 @@ int main(int argc, char **argv) {
     if (argc != 2) {
         return 2;
     }
-    FILE *input = fopen(argv[1], "rb");
+    FILE *input = strcmp(argv[1], "-") == 0 ? stdin : fopen(argv[1], "rb");
     if (input == NULL) {
         return 2;
     }
     char line[256];
     int64_t volume = 0, remainder = 0;
+    (void)setvbuf(stdout, NULL, _IOLBF, 0U);
     puts("volume,raw,underflow,overflow,level,remainder");
-    while (fgets(line, sizeof line, input) != NULL) {
+    (void)fflush(stdout);
+    int record;
+    while ((record = read_record(input, line, sizeof line)) > 0) {
+        if (has_empty_field(line)) {
+            (void)fclose(input);
+            return 2;
+        }
         int64_t values[6];
         size_t count = 0U;
-        char *field = strtok(line, ",\r\n");
+        char *field = strtok(line, ",");
         bool continued = false;
         while (field != NULL && count < 6U) {
             if (count == 2U && strcmp(field, "continue") == 0) {
@@ -41,7 +49,7 @@ int main(int argc, char **argv) {
                 }
                 values[count++] = value;
             }
-            field = strtok(NULL, ",\r\n");
+            field = strtok(NULL, ",");
         }
         if (count != 6U || field != NULL || values[0] < 1 || values[0] > 500 ||
             values[1] < 1 || values[1] > 100000000 || values[2] > values[1] ||
@@ -62,7 +70,8 @@ int main(int argc, char **argv) {
         printf("%" PRId64 ",%" PRId64 ",%u,%u,%" PRId64 ",%" PRId64 "\n",
             volume, raw, (unsigned int)(raw < 0), (unsigned int)(raw > values[1]),
             volume * 10000 / values[1], remainder);
+        (void)fflush(stdout);
     }
-    bool failed = ferror(input) != 0;
+    bool failed = record < 0;
     return fclose(input) != 0 || failed ? 2 : 0;
 }

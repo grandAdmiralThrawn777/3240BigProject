@@ -71,8 +71,8 @@ for name, command in commands.items():
     case('command_' + name, rows, {'8': expected})
 
 valid = signed(b'SET,2000,8000')
-case('apply_next_tick', [row(100, rx=valid), row(200), row(300), row(400, level=1500)],
-    {'2': {'accepted': 1, 'low': 2000, 'open': 1}, '3': {'open': 1}})
+case('apply_next_tick', [row(100, rx=signed(b'SET,1000,2000')), row(200), row(300), row(400)],
+    {'2': {'accepted': 1, 'low': 1000, 'open': 1}, '3': {'open': 0}})
 case('replay', [row(100 * (i + 1), rx=command) for i, command in enumerate(
     [valid, b'', b'', signed(b'SET,3500,6500'), b'', b'', valid, b'', b''])],
     {'8': {'accepted': 3, 'low': 2000, 'high': 8000}})
@@ -87,6 +87,18 @@ case('queue_256', [row(1, rx=b'x' * 256), row(100)],
 case('flood_safety', [row(100 * (i + 1), valid=0 if i == 5 else 1, rx=b'x' * 100) for i in range(10)],
     {'5': {'open': 0, 'fault': 1}, '9': {'deadlines': 0}})
 
+for length in [127, 128, 129, 1024]:
+    payload = b'x' * length + b'\n'
+    # Feed in chunks so the 1024-byte case tests line framing, not just queue overflow.
+    rows = [row((i + 1) * 100, rx=payload[i * 32:(i + 1) * 32]) for i in range((len(payload) + 31) // 32)]
+    rows += [row((len(rows) + i + 1) * 100, rx=valid if i == 0 else b'') for i in range(3)]
+    case('line_length_' + str(length), rows,
+         {str(len(rows) - 1): {'accepted': 1, 'low': 2000, 'overflows': 0}})
+case('valid_endpoints', [row(100, rx=signed(b'SET,0,10000')), row(200), row(300)],
+     {'2': {'accepted': 1, 'low': 0, 'high': 10000}})
+case('repeated_auth', [row((i + 1) * 100, rx=valid if i % 3 == 0 else b'') for i in range(3000)],
+     {'2999': {'accepted': 1000, 'rejected': 0, 'auth': 1000}})
+
 (DATA / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
 vectors = json.loads((ROOT / 'Test_Data/Planned/hmac_vectors.json').read_text())
 # A long key exercises the hash-key branch, checked against Python's separate library.
@@ -97,3 +109,66 @@ for key, message in [(b'\xaa' * 131, b'Test Using Larger Than Block-Size Key - H
 (DATA / 'hmac.csv').write_text(''.join(v['key_hex'] + ',' + v['data_hex'] + '\n' for v in vectors))
 (DATA / 'hmac_expected.json').write_text(json.dumps(vectors, indent=2) + '\n')
 print('Created', len(manifest), 'runtime files and', len(vectors), 'HMAC vectors.')
+
+firmware = [
+    {'name': 'low_opens', 'level': 2500, 'timestamp': 0, 'run_seconds': 0.11,
+     'expected': {'open': 1, 'fault': 0, 'now': 100}},
+    {'name': 'endpoint_retains', 'level': 7000, 'timestamp': 100,
+     'expected': {'open': 1, 'fault': 0}},
+    {'name': 'high_closes', 'level': 7001, 'timestamp': 200,
+     'expected': {'open': 0, 'fault': 0}},
+    {'name': 'invalid_sample', 'level': 2500, 'timestamp': 300, 'valid': 0,
+     'expected': {'open': 0, 'fault': 1}},
+    {'name': 'recovery', 'level': 2500, 'timestamp': 400,
+     'expected': {'open': 1, 'fault': 0}},
+    {'name': 'age_300', 'level': 2500, 'timestamp': 300,
+     'expected': {'open': 1, 'fault': 0}},
+    {'name': 'age_400', 'level': 2500, 'timestamp': 300,
+     'expected': {'open': 0, 'fault': 1}},
+    {'name': 'torn_record', 'level': 2500, 'timestamp': 700, 'sequence_parity': 1,
+     'expected': {'open': 0, 'fault': 1}},
+    {'name': 'wide_sensor', 'level': 65536 + 2500, 'timestamp': 800,
+     'expected': {'open': 0, 'fault': 1}},
+]
+for offset, command in enumerate([valid, b'', b'', commands['wrong_key'], b'', b'']):
+    tick = 1000 + offset * 100
+    firmware.append({'name': 'uart_' + str(offset), 'level': 2500, 'timestamp': tick - 100,
+                     'rx_hex': command.hex(), 'expected': {'fault': 0, 'deadlines': 0}})
+firmware[-1]['expected'].update({'accepted': 1, 'rejected': 1, 'low': 2000, 'high': 8000})
+for mode in ['quiet', 'commands', 'flood']:
+    start_tick = len(firmware) * 100
+    for tick in range(1, 601):
+        rx = b''
+        if mode == 'commands' and tick % 10 == 0:
+            rx = valid
+        if mode == 'flood':
+            if 200 <= tick < 300:
+                rx = b'x' * 100
+            elif tick == 300:
+                rx = b'\n'
+            elif tick == 310:
+                rx = valid
+        firmware.append({'name': 'load_' + mode + '_' + str(tick), 'level': 1500,
+            'timestamp': start_tick + (tick - 1) * 100, 'valid': 0 if tick == 250 else 1,
+            'rx_hex': rx.hex(), 'expected': {'fault': int(tick == 250), 'open': int(tick != 250),
+                                            'deadlines': 0, 'now': start_tick + tick * 100}})
+firmware[-1]['expected']['accepted'] = 62
+(DATA/'firmware.json').write_text(json.dumps(firmware, indent=2) + '\n')
+
+tank = {'events': [{'profile': 'demand', 'time_ms': 200000, 'event': 'drain_ul_s', 'value': 500000},
+                  {'profile': 'demand', 'time_ms': 400000, 'event': 'drain_ul_s', 'value': 1500000},
+                  {'profile': 'stuck_open', 'time_ms': 10000, 'event': 'force_open', 'value': 1}],
+        'runs': []}
+for name, profile, duration, demand, repeats, periods in [
+    ('T01', 'normal', 600000, 1000000, 3, [100]),
+    ('T02', 'demand', 600000, 1000000, 3, [100]),
+    ('T03', 'shortage', 600000, 3000000, 1, [100]),
+    ('T04', 'stuck_open', 120000, 1000000, 1, [100]),
+    ('T05', 'normal', 3600000, 1000000, 1, [100]),
+    ('T06', 'normal', 600000, 1000000, 3, [50, 100, 500])]:
+    for period in periods:
+        for repeat in range(1, repeats + 1):
+            tank['runs'].append({'name': name + (('_' + str(period)) if name == 'T06' else '') + '_' + str(repeat),
+                'profile': profile, 'duration_ms': duration, 'period_ms': period,
+                'inlet_ul_s': 2000000, 'demand_ul_s': demand})
+(DATA/'tank.json').write_text(json.dumps(tank, indent=2) + '\n')

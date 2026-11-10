@@ -369,11 +369,11 @@
     "checks": {
       "2": {
         "accepted": 1,
-        "low": 2000,
+        "low": 1000,
         "open": 1
       },
       "3": {
-        "open": 1
+        "open": 0
       }
     }
   },
@@ -444,6 +444,78 @@
       },
       "9": {
         "deadlines": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_127",
+    "file": "line_length_127.csv",
+    "expected_exit": 0,
+    "checks": {
+      "6": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_128",
+    "file": "line_length_128.csv",
+    "expected_exit": 0,
+    "checks": {
+      "7": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_129",
+    "file": "line_length_129.csv",
+    "expected_exit": 0,
+    "checks": {
+      "7": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_1024",
+    "file": "line_length_1024.csv",
+    "expected_exit": 0,
+    "checks": {
+      "35": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "valid_endpoints",
+    "file": "valid_endpoints.csv",
+    "expected_exit": 0,
+    "checks": {
+      "2": {
+        "accepted": 1,
+        "low": 0,
+        "high": 10000
+      }
+    }
+  },
+  {
+    "name": "repeated_auth",
+    "file": "repeated_auth.csv",
+    "expected_exit": 0,
+    "checks": {
+      "2999": {
+        "accepted": 1000,
+        "rejected": 0,
+        "auth": 1000
       }
     }
   }

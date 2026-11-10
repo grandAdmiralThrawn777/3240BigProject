@@ -1,0 +1,168 @@
+{
+  "events": [
+    {
+      "profile": "demand",
+      "time_ms": 200000,
+      "event": "drain_ul_s",
+      "value": 500000
+    },
+    {
+      "profile": "demand",
+      "time_ms": 400000,
+      "event": "drain_ul_s",
+      "value": 1500000
+    },
+    {
+      "profile": "stuck_open",
+      "time_ms": 10000,
+      "event": "force_open",
+      "value": 1
+    }
+  ],
+  "runs": [
+    {
+      "name": "T01_1",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T01_2",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T01_3",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T02_1",
+      "profile": "demand",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T02_2",
+      "profile": "demand",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T02_3",
+      "profile": "demand",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T03_1",
+      "profile": "shortage",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 3000000
+    },
+    {
+      "name": "T04_1",
+      "profile": "stuck_open",
+      "duration_ms": 120000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T05_1",
+      "profile": "normal",
+      "duration_ms": 3600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_50_1",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 50,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_50_2",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 50,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_50_3",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 50,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_100_1",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_100_2",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_100_3",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 100,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_500_1",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 500,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_500_2",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 500,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    },
+    {
+      "name": "T06_500_3",
+      "profile": "normal",
+      "duration_ms": 600000,
+      "period_ms": 500,
+      "inlet_ul_s": 2000000,
+      "demand_ul_s": 1000000
+    }
+  ]
+}

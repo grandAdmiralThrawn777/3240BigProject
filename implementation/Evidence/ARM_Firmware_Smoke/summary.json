@@ -1,0 +1,357 @@
+{
+  "status": "PASS",
+  "elf_sha256": "b52b6609ec0e5cbfb5744eb36ae159f07889b374a9c57e4c4fecc25525f41d78",
+  "target": "ARM Cortex-M4 / STM32F4, Renode emulation",
+  "checks": [
+    {
+      "name": "low_opens",
+      "expected": {
+        "open": 1,
+        "fault": 0,
+        "now": 100
+      },
+      "observed": {
+        "now": 100,
+        "open": 1,
+        "fault": 0,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 1,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "endpoint_retains",
+      "expected": {
+        "open": 1,
+        "fault": 0
+      },
+      "observed": {
+        "now": 200,
+        "open": 1,
+        "fault": 0,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 2,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "high_closes",
+      "expected": {
+        "open": 0,
+        "fault": 0
+      },
+      "observed": {
+        "now": 300,
+        "open": 0,
+        "fault": 0,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 3,
+        "gpio": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "invalid_sample",
+      "expected": {
+        "open": 0,
+        "fault": 1
+      },
+      "observed": {
+        "now": 400,
+        "open": 0,
+        "fault": 1,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 4,
+        "gpio": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "recovery",
+      "expected": {
+        "open": 1,
+        "fault": 0
+      },
+      "observed": {
+        "now": 500,
+        "open": 1,
+        "fault": 0,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 5,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "age_300",
+      "expected": {
+        "open": 1,
+        "fault": 0
+      },
+      "observed": {
+        "now": 600,
+        "open": 1,
+        "fault": 0,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 6,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "age_400",
+      "expected": {
+        "open": 0,
+        "fault": 1
+      },
+      "observed": {
+        "now": 700,
+        "open": 0,
+        "fault": 1,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 7,
+        "gpio": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "torn_record",
+      "expected": {
+        "open": 0,
+        "fault": 1
+      },
+      "observed": {
+        "now": 800,
+        "open": 0,
+        "fault": 1,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 8,
+        "gpio": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "wide_sensor",
+      "expected": {
+        "open": 0,
+        "fault": 1
+      },
+      "observed": {
+        "now": 900,
+        "open": 0,
+        "fault": 1,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 0,
+        "ticks": 9,
+        "gpio": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "uart_0",
+      "expected": {
+        "fault": 0,
+        "deadlines": 0
+      },
+      "observed": {
+        "now": 1000,
+        "open": 1,
+        "fault": 0,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 32,
+        "ticks": 10,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "uart_1",
+      "expected": {
+        "fault": 0,
+        "deadlines": 0
+      },
+      "observed": {
+        "now": 1100,
+        "open": 1,
+        "fault": 0,
+        "low": 3000,
+        "high": 7000,
+        "accepted": 0,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 0,
+        "bytes": 32,
+        "ticks": 11,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "uart_2",
+      "expected": {
+        "fault": 0,
+        "deadlines": 0
+      },
+      "observed": {
+        "now": 1200,
+        "open": 1,
+        "fault": 0,
+        "low": 2000,
+        "high": 8000,
+        "accepted": 1,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 1,
+        "bytes": 15,
+        "ticks": 12,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "uart_3",
+      "expected": {
+        "fault": 0,
+        "deadlines": 0
+      },
+      "observed": {
+        "now": 1300,
+        "open": 1,
+        "fault": 0,
+        "low": 2000,
+        "high": 8000,
+        "accepted": 1,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 1,
+        "bytes": 32,
+        "ticks": 13,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "uart_4",
+      "expected": {
+        "fault": 0,
+        "deadlines": 0
+      },
+      "observed": {
+        "now": 1400,
+        "open": 1,
+        "fault": 0,
+        "low": 2000,
+        "high": 8000,
+        "accepted": 1,
+        "rejected": 0,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 1,
+        "bytes": 32,
+        "ticks": 14,
+        "gpio": 4096
+      },
+      "passed": true
+    },
+    {
+      "name": "uart_5",
+      "expected": {
+        "fault": 0,
+        "deadlines": 0,
+        "accepted": 1,
+        "rejected": 1,
+        "low": 2000,
+        "high": 8000
+      },
+      "observed": {
+        "now": 1500,
+        "open": 1,
+        "fault": 0,
+        "low": 2000,
+        "high": 8000,
+        "accepted": 1,
+        "rejected": 1,
+        "overflows": 0,
+        "deadlines": 0,
+        "auth": 2,
+        "bytes": 15,
+        "ticks": 15,
+        "gpio": 4096
+      },
+      "passed": true
+    }
+  ]
+}

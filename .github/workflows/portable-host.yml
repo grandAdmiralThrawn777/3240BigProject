@@ -32,6 +32,8 @@ jobs:
         run: python implementation/Scripts/run_baseline.py --cc ${{ matrix.cc }}
       - name: Runtime, serial, HMAC and model tests
         run: python implementation/Scripts/test_runtime.py --cc ${{ matrix.cc }}
+      - name: Closed-loop C tank scenarios
+        run: python implementation/Scripts/test_tank.py --cc ${{ matrix.cc }}
       - name: Address and undefined-behavior checks
         if: runner.os != 'Windows'
         run: python implementation/Scripts/test_runtime.py --cc ${{ matrix.cc }} --sanitize

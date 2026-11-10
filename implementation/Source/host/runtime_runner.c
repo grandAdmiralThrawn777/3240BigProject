@@ -1,4 +1,5 @@
 #include "runtime.h"
+#include "file_input.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,7 +33,7 @@ int main(int argc, char **argv) {
     if (argc != 2) {
         return 2;
     }
-    FILE *input = fopen(argv[1], "rb");
+    FILE *input = strcmp(argv[1], "-") == 0 ? stdin : fopen(argv[1], "rb");
     if (input == NULL) {
         return 2;
     }
@@ -40,16 +41,17 @@ int main(int argc, char **argv) {
     tank_runtime runtime;
     tank_runtime_init(&runtime, 100U);
     char line[4096];
+    (void)setvbuf(stdout, NULL, _IOLBF, 0U);
     puts("now,ran,open,fault,low,high,accepted,rejected,overflows,deadlines,auth,bytes,queued");
-    while (fgets(line, sizeof line, input) != NULL) {
-        size_t length = strlen(line);
-        if (length == 0U || line[length - 1U] != '\n') {
-            (void)fclose(input);
-            return 2;
-        }
-        line[strcspn(line, "\r\n")] = '\0';
+    (void)fflush(stdout);
+    int record;
+    while ((record = read_record(input, line, sizeof line)) > 0) {
         if (line[0] == '#' || line[0] == '\0') {
             continue;
+        }
+        if (has_empty_field(line)) {
+            (void)fclose(input);
+            return 2;
         }
         char *fields[6];
         size_t count = 0U;
@@ -100,7 +102,8 @@ int main(int argc, char **argv) {
             (unsigned long)runtime.rejected, (unsigned long)runtime.overflows,
             (unsigned long)runtime.deadlines, (unsigned long)runtime.auth_attempts,
             (unsigned long)runtime.last_bytes, runtime.count);
+        (void)fflush(stdout);
     }
-    bool failed = ferror(input) != 0;
+    bool failed = record < 0;
     return fclose(input) != 0 || failed ? 2 : 0;
 }

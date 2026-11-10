@@ -1,0 +1,1013 @@
+[14:49:34.3866] [INFO] Loaded monitor commands from: C:\Users\Administrator\water-tank-study\tools\renode\renode_1.17.0-portable\scripts/monitor.py
+Renode, version 1.17.0 (1.17.0+20260906gitf1dd1b4af)
+
+
+(monitor) echo "SESSION_READY"
+
+SESSION_READY
+
+
+(monitor) 
+
+(monitor) echo "TANK_END_1"
+
+TANK_END_1
+
+
+(monitor) 
+
+(monitor) mach create "tank"
+
+[14:49:34.5093] [INFO] System bus created.
+(tank) 
+
+(tank) echo "TANK_END_2"
+
+TANK_END_2
+
+
+(tank) 
+
+(tank) emulation SetGlobalAdvanceImmediately true
+
+(tank) 
+
+(tank) echo "TANK_END_3"
+
+TANK_END_3
+
+
+(tank) 
+
+(tank) machine LoadPlatformDescription @C:/Users/Administrator/water-tank-study/implementation/Source/emulation/tank.repl
+
+[14:49:35.0547] [INFO] SynopsysEthernetMAC: Bus width not specified, defaulting to Bits32
+[14:49:35.1326] [INFO] Reading cache
+[14:49:35.3542] [INFO] sysbus: Loaded SVD: C:\Users\Administrator\AppData\Local\Temp\renode-7764\3c7e9117-f4bc-4a56-b5b9-65a501d63f3a.tmp. Name: STM32F40x. Description: STM32F40x.
+(tank) 
+
+(tank) echo "TANK_END_4"
+
+TANK_END_4
+
+
+(tank) 
+
+(tank) sysbus LoadELF @C:/Users/Administrator/water-tank-study/implementation/Build/cortex-m4/controller.elf
+
+[14:49:35.3957] [INFO] sysbus: Loading block of 7448 bytes length at 0x8000000.
+[14:49:35.4031] [INFO] sysbus: Loading block of 4640 bytes length at 0x8001D18.
+[14:49:35.4032] [INFO] sysbus: Loading block of 32 bytes length at 0x20000000.
+(tank) 
+
+(tank) echo "TANK_END_5"
+
+TANK_END_5
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 1; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 0; sysbus WriteDoubleWord 0x20000000 2
+
+(tank) 
+
+(tank) echo "TANK_END_6"
+
+TANK_END_6
+
+
+(tank) 
+
+(tank) emulation RunFor "0.11"
+
+[14:49:35.4418] [INFO] cpu: Guessing VectorTableOffset value to be 0x8000000.
+[14:49:35.4483] [INFO] cpu: Setting initial values: PC = 0x8000719, SP = 0x20020000.
+[14:49:35.4496] [INFO] tank: Machine started.
+[14:49:35.4923] [INFO] tank: Machine paused.
+(tank) 
+
+(tank) echo "TANK_END_7"
+
+TANK_END_7
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x00000064
+
+0x00000001
+
+0x00000000
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000001
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_8"
+
+TANK_END_8
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 3; sysbus WriteDoubleWord 0x20000004 7000; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 100; sysbus WriteDoubleWord 0x20000000 4
+
+(tank) 
+
+(tank) echo "TANK_END_9"
+
+TANK_END_9
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.5303] [INFO] tank: Machine resumed.
+(tank) 
+
+(tank) echo[14:49:35.5382] [INFO] tank: Machine paused.
+ "TANK_END_10"
+
+TANK_END_10
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x000000C8
+
+0x00000001
+
+0x00000000
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000002
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_11"
+
+TANK_END_11
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 5; sysbus WriteDoubleWord 0x20000004 7001; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 200; sysbus WriteDoubleWord 0x20000000 6
+
+(tank) 
+
+(tank) echo "TANK_END_12"
+
+TANK_END_12
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.5625] [INFO] tank: Machine resumed.
+([14:49:35.5717] [INFO] tank: Machine paused.
+tank) 
+
+(tank) echo "TANK_END_13"
+
+TANK_END_13
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x0000012C
+
+0x00000000
+
+0x00000000
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000003
+
+0x00000000
+
+(tank) 
+
+(tank) echo "TANK_END_14"
+
+TANK_END_14
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 7; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 0; sysbus WriteDoubleWord 0x2000000c 300; sysbus WriteDoubleWord 0x20000000 8
+
+(tank) 
+
+(tank) echo "TANK_END_15"
+
+TANK_END_15
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.5966] [INFO] tank: Machine resumed.
+(tank) 
+
+(tank) echo "TANK_END_16"
+
+[14:49:35.6051] [INFO] tank: Machine paused.
+TANK_END_16
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x00000190
+
+0x00000000
+
+0x00000001
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000004
+
+0x00000000
+
+(tank) 
+
+(tank) echo "TANK_END_17"
+
+TANK_END_17
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 9; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 400; sysbus WriteDoubleWord 0x20000000 10
+
+(tank) 
+
+(tank) echo "TANK_END_18"
+
+TANK_END_18
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.6349] [INFO] tank: Machine resumed.
+(tank) 
+
+(tank) echo "TANK_END[14:49:35.6423] [INFO] tank: Machine paused.
+_19"
+
+TANK_END_19
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x000001F4
+
+0x00000001
+
+0x00000000
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000005
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_20"
+
+TANK_END_20
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 11; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 300; sysbus WriteDoubleWord 0x20000000 12
+
+(tank) 
+
+(tank) echo "TANK_END_21"
+
+TANK_END_21
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.6707] [INFO] tank: Machine resumed.
+(tank) 
+
+(tank) echo "TANK_END_22[14:49:35.6778] [INFO] tank: Machine paused.
+"
+
+TANK_END_22
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x00000258
+
+0x00000001
+
+0x00000000
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000006
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_23"
+
+TANK_END_23
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 13; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 300; sysbus WriteDoubleWord 0x20000000 14
+
+(tank) 
+
+(tank) echo "TANK_END_24"
+
+TANK_END_24
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.7057] [INFO] tank: Machine resumed.
+(tank) [14:49:35.7124] [INFO] tank: Machine paused.
+
+
+(tank) echo "TANK_END_25"
+
+TANK_END_25
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x000002BC
+
+0x00000000
+
+0x00000001
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000007
+
+0x00000000
+
+(tank) 
+
+(tank) echo "TANK_END_26"
+
+TANK_END_26
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 15; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 700; sysbus WriteDoubleWord 0x20000000 15
+
+(tank) 
+
+(tank) echo "TANK_END_27"
+
+TANK_END_27
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.7420] [INFO] tank: Machine resumed.
+(t[14:49:35.7530] [INFO] tank: Machine paused.
+ank) 
+
+(tank) echo "TANK_END_28"
+
+TANK_END_28
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x00000320
+
+0x00000000
+
+0x00000001
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000008
+
+0x00000000
+
+(tank) 
+
+(tank) echo "TANK_END_29"
+
+TANK_END_29
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 17; sysbus WriteDoubleWord 0x20000004 68036; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 800; sysbus WriteDoubleWord 0x20000000 18
+
+(tank) 
+
+(tank) echo "TANK_END_30"
+
+TANK_END_30
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.7828] [INFO] tank: Machine resumed.
+(tank) 
+
+(tank) echo [14:49:35.7887] [INFO] tank: Machine paused.
+"TANK_END_31"
+
+TANK_END_31
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x00000384
+
+0x00000000
+
+0x00000001
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000009
+
+0x00000000
+
+(tank) 
+
+(tank) echo "TANK_END_32"
+
+TANK_END_32
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 19; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 900; sysbus WriteDoubleWord 0x20000000 20
+
+(tank) 
+
+(tank) echo "TANK_END_33"
+
+TANK_END_33
+
+
+(tank) 
+
+(tank) sysbus.usart2 WriteChar 83; sysbus.usart2 WriteChar 69; sysbus.usart2 WriteChar 84; sysbus.usart2 WriteChar 44; sysbus.usart2 WriteChar 50; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 44; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 44; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 100; sysbus.usart2 WriteChar 49; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 57; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 102; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 100; sysbus.usart2 WriteChar 54; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 97; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 54; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 54; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 49; sysbus.usart2 WriteChar 49; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 54; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 54; sysbus.usart2 WriteChar 97; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 49; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 57; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 97; sysbus.usart2 WriteChar 97; sysbus.usart2 WriteChar 10
+
+(tank) 
+
+(tank) echo "TANK_END_34"
+
+TANK_END_34
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.8712] [INFO] tank: Machine resumed.
+(tank) 
+
+(tank) e[14:49:35.8817] [INFO] tank: Machine paused.
+cho "TANK_END_35"
+
+TANK_END_35
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x000003E8
+
+0x00000001
+
+0x00000000
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000020
+
+0x0000000A
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_36"
+
+TANK_END_36
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 21; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 1000; sysbus WriteDoubleWord 0x20000000 22
+
+(tank) 
+
+(tank) echo "TANK_END_37"
+
+TANK_END_37
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.9095] [INFO] tank: Machine resumed.
+(t[14:49:35.9169] [INFO] tank: Machine paused.
+ank) 
+
+(tank) echo "TANK_END_38"
+
+TANK_END_38
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x0000044C
+
+0x00000001
+
+0x00000000
+
+0x00000BB8
+
+0x00001B58
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000020
+
+0x0000000B
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_39"
+
+TANK_END_39
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 23; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 1100; sysbus WriteDoubleWord 0x20000000 24
+
+(tank) 
+
+(tank) echo "TANK_END_40"
+
+TANK_END_40
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:35.9449] [INFO] tank: Machine resumed.
+(tank) [14:49:35.9555] [INFO] tank: Machine paused.
+
+
+(tank) echo "TANK_END_41"
+
+TANK_END_41
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x000004B0
+
+0x00000001
+
+0x00000000
+
+0x000007D0
+
+0x00001F40
+
+0x00000001
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000001
+
+0x0000000F
+
+0x0000000C
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_42"
+
+TANK_END_42
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 25; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 1200; sysbus WriteDoubleWord 0x20000000 26
+
+(tank) 
+
+(tank) echo "TANK_END_43"
+
+TANK_END_43
+
+
+(tank) 
+
+(tank) sysbus.usart2 WriteChar 83; sysbus.usart2 WriteChar 69; sysbus.usart2 WriteChar 84; sysbus.usart2 WriteChar 44; sysbus.usart2 WriteChar 50; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 44; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 44; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 102; sysbus.usart2 WriteChar 97; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 54; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 57; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 49; sysbus.usart2 WriteChar 50; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 49; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 57; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 100; sysbus.usart2 WriteChar 100; sysbus.usart2 WriteChar 100; sysbus.usart2 WriteChar 99; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 49; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 100; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 57; sysbus.usart2 WriteChar 55; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 57; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 52; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 101; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 53; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 51; sysbus.usart2 WriteChar 48; sysbus.usart2 WriteChar 98; sysbus.usart2 WriteChar 56; sysbus.usart2 WriteChar 10
+
+(tank) 
+
+(tank) echo "TANK_END_44"
+
+TANK_END_44
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:36.0008] [INFO] tank: Machine resumed.
+(tank) 
+
+(tank) echo "TANK_END_45"
+
+[14:49:36.0079] [INFO] tank: Machine paused.
+TANK_END_45
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x00000514
+
+0x00000001
+
+0x00000000
+
+0x000007D0
+
+0x00001F40
+
+0x00000001
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000001
+
+0x00000020
+
+0x0000000D
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_46"
+
+TANK_END_46
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 27; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 1300; sysbus WriteDoubleWord 0x20000000 28
+
+(tank) 
+
+(tank) echo "TANK_END_47"
+
+TANK_END_47
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:36.0357] [INFO] tank: Machine resumed.
+([14:49:36.0428] [INFO] tank: Machine paused.
+tank) 
+
+(tank) echo "TANK_END_48"
+
+TANK_END_48
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x00000578
+
+0x00000001
+
+0x00000000
+
+0x000007D0
+
+0x00001F40
+
+0x00000001
+
+0x00000000
+
+0x00000000
+
+0x00000000
+
+0x00000001
+
+0x00000020
+
+0x0000000E
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_49"
+
+TANK_END_49
+
+
+(tank) 
+
+(tank) sysbus WriteDoubleWord 0x20000000 29; sysbus WriteDoubleWord 0x20000004 2500; sysbus WriteDoubleWord 0x20000008 1; sysbus WriteDoubleWord 0x2000000c 1400; sysbus WriteDoubleWord 0x20000000 30
+
+(tank) 
+
+(tank) echo "TANK_END_50"
+
+TANK_END_50
+
+
+(tank) 
+
+(tank) emulation RunFor "0.1"
+
+[14:49:36.0749] [INFO] tank: Machine resumed.
+([14:49:36.0836] [INFO] tank: Machine paused.
+tank) 
+
+(tank) echo "TANK_END_51"
+
+TANK_END_51
+
+
+(tank) 
+
+(tank) sysbus ReadDoubleWord 0x2000102c; sysbus ReadDoubleWord 0x20001030; sysbus ReadDoubleWord 0x20001034; sysbus ReadDoubleWord 0x20001038; sysbus ReadDoubleWord 0x2000103c; sysbus ReadDoubleWord 0x20001040; sysbus ReadDoubleWord 0x20001044; sysbus ReadDoubleWord 0x20001048; sysbus ReadDoubleWord 0x2000104c; sysbus ReadDoubleWord 0x20001050; sysbus ReadDoubleWord 0x20001054; sysbus ReadDoubleWord 0x20001058; sysbus ReadDoubleWord 0x40020C14
+
+0x000005DC
+
+0x00000001
+
+0x00000000
+
+0x000007D0
+
+0x00001F40
+
+0x00000001
+
+0x00000001
+
+0x00000000
+
+0x00000000
+
+0x00000002
+
+0x0000000F
+
+0x0000000F
+
+0x00001000
+
+(tank) 
+
+(tank) echo "TANK_END_52"
+
+TANK_END_52
+
+
+(tank) 
+
+(tank) quit
+
+Renode is quitting
+
+[14:49:36.1321] [INFO] tank: Disposed.

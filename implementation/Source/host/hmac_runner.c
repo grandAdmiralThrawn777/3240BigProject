@@ -1,4 +1,5 @@
 #include "runtime.h"
+#include "file_input.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -39,8 +40,8 @@ int main(int argc, char **argv) {
     }
     tank_crypto_init();
     char line[4200];
-    while (fgets(line, sizeof line, input) != NULL) {
-        line[strcspn(line, "\r\n")] = '\0';
+    int record;
+    while ((record = read_record(input, line, sizeof line)) > 0) {
         char *split = strchr(line, ',');
         if (split == NULL) {
             (void)fclose(input);
@@ -59,6 +60,6 @@ int main(int argc, char **argv) {
         }
         putchar('\n');
     }
-    bool failed = ferror(input) != 0;
+    bool failed = record < 0;
     return fclose(input) != 0 || failed ? 2 : 0;
 }

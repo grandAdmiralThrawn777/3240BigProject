@@ -1,0 +1,28 @@
+Mbed TLS 3.6.7
+
+Source release:
+https://github.com/Mbed-TLS/mbedtls/releases/tag/mbedtls-3.6.7
+Archive: mbedtls-3.6.7.tar.bz2
+SHA-256: a7e8bcbec0e6f761b4af24f25677626b35f762f68eef79c08677a363212d11f6
+
+Third_Party/mbedtls contains the upstream public headers, internal library
+headers and six unmodified C files needed for SHA-256, message digests,
+constant-time comparison, platform support and static memory allocation.
+The upstream LICENSE is included. Individual files carry their upstream
+copyright and SPDX license notices. Project code uses the Apache-2.0 option
+where the upstream file offers Apache-2.0 OR GPL-2.0-or-later.
+
+Source/include/tank_mbed_config.h is the project's minimal configuration.
+It selects SHA-256/HMAC and a 4096-byte static allocator. The application
+does not implement its own hash, HMAC or tag comparison algorithm.
+
+Other tools used for recorded results
+  Python standard library: build, file input, independent reference, logs
+  MinGW-w64 GCC 16.1.0: local Windows x86-64 host builds
+  xPack GNU Arm Embedded GCC 15.2.1-1.1: Cortex-M4 firmware build
+  Renode 1.17.0: ARM/STM32F4 execution and peripheral emulation
+  IEEEtran 1.8b and Tectonic 0.17.0: final report authoring
+
+Compiler and emulator installations are not bundled in the submission.
+Install tools built for your host OS and processor. The source archive and
+tool download provenance are kept in the local working environment.

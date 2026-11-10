@@ -53,6 +53,20 @@ def main():
         expected = [value['sha256'] for value in json.loads((data / 'hmac_expected.json').read_text())]
         assert actual == expected, 'HMAC mismatch'
         report['checks'][-1]['passed'] = True
+        for program, valid_row in [
+            ('runtime_runner', b'100,2500,100,1,100,-\n'),
+            ('tank_model', b'100,100000000,50000000,2000000,1000000,1\n'),
+            ('hmac_runner', b'00,00\n')]:
+            invalid = {'embedded_nul': valid_row.rstrip(b'\n') + b'\x00hidden\n',
+                       'overlong': b'9' * 5000 + b'\n'}
+            if program != 'hmac_runner':
+                invalid['empty_field'] = valid_row.replace(b',', b',,', 1)
+                invalid['overflow'] = valid_row.replace(valid_row.split(b',')[0], b'999999999999999999999999999', 1)
+            for name, content in invalid.items():
+                fixture = data/(program + '_' + name + '.csv')
+                fixture.write_bytes(content)
+                run(program, fixture, program + '_' + name, 2)
+                report['checks'][-1]['passed'] = True
         model_data = data / 'model.csv'
         model_data.write_text('100,100000000,50000000,2000000,1000000,1\n'
                               '100,100000000,continue,2000000,1000000,0\n'
