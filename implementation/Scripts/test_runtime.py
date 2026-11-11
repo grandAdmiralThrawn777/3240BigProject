@@ -3,6 +3,7 @@ import argparse
 import csv
 import io
 import json
+import hashlib
 import os
 from pathlib import Path
 import platform
@@ -84,6 +85,9 @@ def main():
     except (AssertionError, OSError, subprocess.TimeoutExpired) as error:
         report['status'] = 'FAIL'
         report['error'] = str(error)
+    report['source_sha256'] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+        for directory in ['Source', 'Scripts', 'Test_Data', 'Third_Party']
+        for p in sorted((ROOT/directory).rglob('*')) if p.is_file() and '__pycache__' not in p.parts}
     (evidence / 'summary.json').write_text(json.dumps(report, indent=2) + '\n')
     print(report['status'], evidence)
     if report['status'] != 'PASS':

@@ -1,0 +1,6 @@
+Final presentation - week of December 7, 2026
+Open Final_Presentation_Finley_Burns.pptx. Twelve editable slides use Arial.
+Speaking_Notes.txt contains the same notes as the PPTX. Allow about 7-9 minutes.
+The slides use the verified results in the accompanying final report.
+Native host results and emulated ARM results are labeled separately.
+All slides were rendered and reviewed. PowerPoint itself was not used for this check.

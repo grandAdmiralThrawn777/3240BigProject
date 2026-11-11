@@ -1,0 +1,206 @@
+{
+  "status": "PASS",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "architecture": "AMD64",
+  "execution": "Native C closed-loop simulation, not Renode",
+  "runs": [
+    {
+      "name": "T01_1",
+      "samples": 6001,
+      "minimum_bp": 2990,
+      "maximum_bp": 7010,
+      "final_ul": 47000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7722da32d9ebab9ff04be537a8ef355f98378caab0419e5b1081c4a236d1ed1c",
+      "passed": true
+    },
+    {
+      "name": "T01_2",
+      "samples": 6001,
+      "minimum_bp": 2990,
+      "maximum_bp": 7010,
+      "final_ul": 47000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7722da32d9ebab9ff04be537a8ef355f98378caab0419e5b1081c4a236d1ed1c",
+      "passed": true
+    },
+    {
+      "name": "T01_3",
+      "samples": 6001,
+      "minimum_bp": 2990,
+      "maximum_bp": 7010,
+      "final_ul": 47000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7722da32d9ebab9ff04be537a8ef355f98378caab0419e5b1081c4a236d1ed1c",
+      "passed": true
+    },
+    {
+      "name": "T02_1",
+      "samples": 6001,
+      "minimum_bp": 2985,
+      "maximum_bp": 7015,
+      "final_ul": 52200000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "a2b74b6e7a1f81ce95821365f4c384befc73b3ce84ab28cba121e04a27da263e",
+      "passed": true
+    },
+    {
+      "name": "T02_2",
+      "samples": 6001,
+      "minimum_bp": 2985,
+      "maximum_bp": 7015,
+      "final_ul": 52200000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "a2b74b6e7a1f81ce95821365f4c384befc73b3ce84ab28cba121e04a27da263e",
+      "passed": true
+    },
+    {
+      "name": "T02_3",
+      "samples": 6001,
+      "minimum_bp": 2985,
+      "maximum_bp": 7015,
+      "final_ul": 52200000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "a2b74b6e7a1f81ce95821365f4c384befc73b3ce84ab28cba121e04a27da263e",
+      "passed": true
+    },
+    {
+      "name": "T03_1",
+      "samples": 6001,
+      "minimum_bp": 0,
+      "maximum_bp": 5000,
+      "final_ul": 0,
+      "underflows": 5634,
+      "overflows": 0,
+      "sha256": "e77a1587d70a76a30602b5ad5142801ab180b0395e9ba1a8b2ed38ef250f5b75",
+      "passed": true
+    },
+    {
+      "name": "T04_1",
+      "samples": 1201,
+      "minimum_bp": 4000,
+      "maximum_bp": 10000,
+      "final_ul": 100000000,
+      "underflows": 0,
+      "overflows": 500,
+      "sha256": "55ffc9afd813ef13fed1b1726743cc4feb00104e08def3a20e89ee6f7ea0738c",
+      "passed": true
+    },
+    {
+      "name": "T05_1",
+      "samples": 36001,
+      "minimum_bp": 2990,
+      "maximum_bp": 7010,
+      "final_ul": 68000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "832e671f570f20a4d8bfc45719eb0981f2b00a8783447bd91f86a8b835a20eec",
+      "passed": true
+    },
+    {
+      "name": "T06_50_1",
+      "samples": 12001,
+      "minimum_bp": 2995,
+      "maximum_bp": 7005,
+      "final_ul": 48500000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7e66c30c89c9196f3ad713a21e70d039563b68260c3559f1b0f8be9ac02084e3",
+      "passed": true
+    },
+    {
+      "name": "T06_50_2",
+      "samples": 12001,
+      "minimum_bp": 2995,
+      "maximum_bp": 7005,
+      "final_ul": 48500000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7e66c30c89c9196f3ad713a21e70d039563b68260c3559f1b0f8be9ac02084e3",
+      "passed": true
+    },
+    {
+      "name": "T06_50_3",
+      "samples": 12001,
+      "minimum_bp": 2995,
+      "maximum_bp": 7005,
+      "final_ul": 48500000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7e66c30c89c9196f3ad713a21e70d039563b68260c3559f1b0f8be9ac02084e3",
+      "passed": true
+    },
+    {
+      "name": "T06_100_1",
+      "samples": 6001,
+      "minimum_bp": 2990,
+      "maximum_bp": 7010,
+      "final_ul": 47000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7722da32d9ebab9ff04be537a8ef355f98378caab0419e5b1081c4a236d1ed1c",
+      "passed": true
+    },
+    {
+      "name": "T06_100_2",
+      "samples": 6001,
+      "minimum_bp": 2990,
+      "maximum_bp": 7010,
+      "final_ul": 47000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7722da32d9ebab9ff04be537a8ef355f98378caab0419e5b1081c4a236d1ed1c",
+      "passed": true
+    },
+    {
+      "name": "T06_100_3",
+      "samples": 6001,
+      "minimum_bp": 2990,
+      "maximum_bp": 7010,
+      "final_ul": 47000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "7722da32d9ebab9ff04be537a8ef355f98378caab0419e5b1081c4a236d1ed1c",
+      "passed": true
+    },
+    {
+      "name": "T06_500_1",
+      "samples": 1201,
+      "minimum_bp": 2950,
+      "maximum_bp": 7050,
+      "final_ul": 35000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "91e751ca9435de3cfaf26ae48491e692dccd3dade89e25776ef0205d5a86612d",
+      "passed": true
+    },
+    {
+      "name": "T06_500_2",
+      "samples": 1201,
+      "minimum_bp": 2950,
+      "maximum_bp": 7050,
+      "final_ul": 35000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "91e751ca9435de3cfaf26ae48491e692dccd3dade89e25776ef0205d5a86612d",
+      "passed": true
+    },
+    {
+      "name": "T06_500_3",
+      "samples": 1201,
+      "minimum_bp": 2950,
+      "maximum_bp": 7050,
+      "final_ul": 35000000,
+      "underflows": 0,
+      "overflows": 0,
+      "sha256": "91e751ca9435de3cfaf26ae48491e692dccd3dade89e25776ef0205d5a86612d",
+      "passed": true
+    }
+  ]
+}

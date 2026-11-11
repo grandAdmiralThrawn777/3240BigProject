@@ -1,0 +1,7 @@
+The report uses IEEEtran 1.8b.
+Install Python matplotlib and a TeX distribution with IEEEtran support, or Tectonic.
+From the package root, run:
+  python Authoring/build_final_figure.py --data Evidence/Windows_x86_64_Tank
+  tectonic --outdir Report Authoring/Final_Report.tex
+The figure script creates a temporary PDF figure; the distributed package has one report PDF.
+Report source uses relative figure paths. The upstream IEEEtran README contains its license.

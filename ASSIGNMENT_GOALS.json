@@ -44,17 +44,23 @@
     {
       "id": "final_report",
       "deadline_week": "2026-12-07",
-      "status": "active_implementation_required",
+      "status": "complete",
       "objective": "Finish the implementation and testing, then deliver the comprehensive final IEEE-format report, source, results and user guide.",
-      "current_source": "next-submissions/Authoring/Final_Report_DRAFT.tex",
-      "acceptance": "Actual results for remaining modules and goals analysis; accurate limitations; authentic IEEE template; complete reproducible source and user guide; no unfinished feature described as tested. Draft alone does not complete this goal."
+      "current_source": "next-submissions/Authoring/Final_Report.tex",
+      "acceptance": "Actual results for remaining modules and goals analysis; accurate limitations; authentic IEEE template; complete reproducible source and user guide; no unfinished feature described as tested. Draft alone does not complete this goal.",
+      "package": "output/CYCS3240_Final_Report_Finley_Burns.zip",
+      "current_file": "output/CYCS3240_Final_Report/Report/Final_Report_Finley_Burns.pdf",
+      "verification": "Four IEEE pages visually reviewed; 18 native tank runs, 1815 ARM sensor/serial checks and 6001 ARM feedback samples passed; six native OS/architecture CI jobs passed; fresh extraction host tests and ARM build passed."
     },
     {
       "id": "final_presentation",
       "deadline_week": "2026-12-07",
-      "status": "queued",
+      "status": "complete",
       "objective": "Deliver final presentation slides and speaking notes based on the completed project and actual results.",
-      "acceptance": "Explain implementation, measured behavior, examples, goal completion and limits; match final report; inspect every rendered slide. Draft alone does not complete this goal."
+      "acceptance": "Explain implementation, measured behavior, examples, goal completion and limits; match final report; inspect every rendered slide. Draft alone does not complete this goal.",
+      "package": "output/CYCS3240_Final_Presentation_Finley_Burns.zip",
+      "current_file": "next-submissions/Final_Presentation/Final_Presentation_Finley_Burns.pptx",
+      "verification": "Twelve editable slides and notes; every rendered slide reviewed; package, geometry, font and import checks passed."
     }
   ]
 }

@@ -1,0 +1,47 @@
+SLIDE 1 - Secure Embedded Water Tank Controller
+
+I built a C17 controller for one simulated water tank. I wanted it to make the right valve decisions, reject invalid settings changes, and continue controlling the tank while serial input arrived. I will show the implementation, the tests I actually ran, and the limits of the results. The source, input files and raw evidence are included with the final report. The results were collected on November 10. Source: final report and its Evidence directory.
+
+SLIDE 2 - The system
+
+The model starts with 50 litres. The open inlet supplies two litres per second, and normal demand removes one litre per second. I kept the model and control decisions in C. Python coordinates their inputs and outputs. For the ARM run, the adapter writes a sensor record into emulated RAM and reads the actual GPIO valve output back. The model uses that output to calculate the next volume. This closes the loop through the firmware instead of only calling a host function. Sources: Source/host/tank_model.c; Scripts/test_renode_tank.py.
+
+SLIDE 3 - Valve decisions
+
+The two thresholds provide hysteresis. The exact endpoints retain the previous state, so the valve changes only after a sampled value crosses a threshold. The default firmware period is 100 milliseconds. A sample can be up to 300 milliseconds old; older input is invalid. The test cases cover both starting valve states, the boundaries, timer wrap, and recovery after faults. Valid data clears the fault and resumes the same rule. Sources: Source/src/controller.c; Source/src/runtime.c; runtime and firmware result summaries.
+
+SLIDE 4 - Command checks
+
+The tag covers the command and both numbers. I used Mbed TLS 3.6.7 instead of implementing HMAC myself. Five known-answer checks passed, including two published RFC 4231 vectors. Correct authentication does not make invalid thresholds acceptable: equal, reversed or out-of-range settings still fail. A 4096-byte static allocator supplies the library's working memory. The key is public demonstration data, and the design has no encryption or replay prevention. Sources: https://github.com/Mbed-TLS/mbedtls/releases/tag/mbedtls-3.6.7 ; https://www.rfc-editor.org/rfc/rfc4231.html ; Evidence/Windows_x86_64_Runtime.
+
+SLIDE 5 - Host tests
+
+These counts refer to different kinds of tests, so I am not combining them into a coverage percentage. The runtime scenarios include malformed commands, sensor faults, overflow recovery, timeout handling, replay, and 1000 authenticated updates. Ten additional malformed-file checks cover the newer host readers. The model tests compare every sample against an independent Python reference. The repeated normal, demand and sampling cases produced identical trace hashes. Sources: baseline, runtime and tank summaries in Evidence; Test_Data/Runtime/manifest.json.
+
+SLIDE 6 - Windows, macOS and Linux
+
+I checked the compiler target triple as well as the host architecture. This distinguishes a native ARM64 build from an x86 executable running under translation. All six GitHub jobs passed. The Mac and Linux jobs also passed AddressSanitizer and UndefinedBehaviorSanitizer checks on both architectures. I am not claiming a Windows sanitizer pass. The Cortex-M4 is a separate 32-bit embedded ARM target; it is not the same thing as an ARM64 host. Sources: Evidence/CI archives, build target.json files, and https://github.com/grandAdmiralThrawn777/3240BigProject/actions/runs/42890613662 .
+
+SLIDE 7 - Tank results
+
+Normal operation stayed within the planned 29.8 to 70.2 percent allowance. Demand changed to half a litre per second at 200 seconds and one and a half litres per second at 400 seconds. The change affects how quickly the level rises and falls, but the same threshold rule still controls it. The separate ARM run checked 6001 samples and ended at 47 litres, matching the native model. The complete abnormal-flow and sampling matrix ran natively; I am not describing all 18 cases as Renode runs. Sources: Evidence/Windows_x86_64_Tank and Evidence/ARM_Closed_Loop.
+
+SLIDE 8 - Sampling period
+
+These are the measured ranges from the native sampling sweep. Each period was tested three times. The valve retains its state at the threshold, then reacts to the next reading beyond it. More water can enter or leave during a longer interval, which explains the wider range. The actual firmware stays at 100 milliseconds. The 500-millisecond experiment evaluates control and the model; it does not establish usable serial command reception with the unchanged 500-millisecond partial-line timeout. Source: T06 traces and summary in Evidence/Windows_x86_64_Tank.
+
+SLIDE 9 - Conditions control cannot fix
+
+With demand at three litres per second and the inlet limited to two, opening the valve cannot prevent the tank from emptying. In the stuck-open case, the model keeps the actual inlet open even after the controller requests closure. That produces overflow. Keeping the actual valve state separate from the command made these cases possible. I recorded the raw volume before clamping, because clamping alone would make these problems less visible. These results show physical limits in the model rather than incorrect hysteresis decisions. Sources: T03_1.csv and T04_1.csv in the tank evidence.
+
+SLIDE 10 - Control during serial input
+
+The firmware consumes at most 32 bytes and one completed line per 100-millisecond tick. The malformed flood therefore exceeded the service budget and caused queue overflow. The run recorded 1200 dropped bytes. The sensor fault was injected during that traffic, and the emulated GPIO still closed on the checked control tick. After a newline resynchronized the parser, a valid command was accepted. The combined sensor and load sequence checked 1815 ticks. This is virtual-time evidence, not a physical timing certification. Source: Evidence/ARM_Sensor_Serial/summary.json and monitor.log.
+
+SLIDE 11 - Limits
+
+The replay test sends command A, command B, then A again. The last command is accepted because there is no nonce or sequence counter. That limitation is deliberate and visible in the tests. The RAM sensor interface also assumes a trusted adapter; it is not an ADC accuracy test. A physical deployment would need protected key storage, actuator feedback, hardware timing checks and a separate safety review. The results support the simulation I built, without claiming those additional features. Sources: replay fixture and output; final report, Goals Reached and Limits.
+
+SLIDE 12 - Project files and results
+
+The project reached its stated simulation goals. The report explains the behavior and the remaining limits, and the user guide gives the commands for repeating the tests. The final package also passed a fresh extraction check from a path containing spaces, including the host suites and ARM compilation. The separate November submissions remain available as design milestones. I can show the recorded traces or answer questions about the threshold rule, malformed commands, architecture support, or the difference between native and emulated testing. Source: final package USER_GUIDE.txt; Evidence/Fresh_Extraction.json; https://github.com/grandAdmiralThrawn777/3240BigProject .

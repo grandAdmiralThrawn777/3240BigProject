@@ -1,0 +1,51 @@
+Host platforms and processors
+
+The host programs use C17 and the Python standard library. They build locally
+for x86-64 and ARM64 on Windows, macOS and Linux. Use a compiler that targets
+the processor on which the executable will run. A successful cross-compilation
+alone does not establish that a program runs on that processor.
+
+On Windows, use Python 3.9+ and MinGW-w64 GCC, or Clang from a configured Visual
+Studio developer environment. On ARM64 Windows, use native ARM64 Python and
+Clang with the ARM64 developer environment. On macOS, use the Command Line
+Tools Clang compiler with native Intel or Apple Silicon Python. On Linux, use
+native GCC or Clang and Python. No x86 intrinsics or operating-system APIs
+are used in the shared controller, parser, authentication or model code.
+
+    python Scripts/generate_runtime_tests.py
+    python Scripts/test_runtime.py --cc gcc
+    python Scripts/run_baseline.py --cc gcc
+
+Use python3 and --cc cc on macOS/Linux, or --cc clang for Clang. The scripts
+take a compiler executable path, not a shell command. Paths with spaces work.
+Build/ and Runs/ are generated locally. Compiler target, host architecture,
+commands and outputs are recorded with each build/run.
+
+Embedded ARM target
+
+The STM32F4 firmware targets 32-bit Cortex-M4 ARM Thumb instructions. This is
+separate from an ARM64 host build. Install GNU Arm Embedded GCC for the host
+OS/processor, then run:
+
+    python Scripts/build.py --firmware --cc arm-none-eabi-gcc
+
+The same ARM ELF can run in Renode on a supported host. Host CPU architecture
+does not change the emulated STM32F4. The firmware board code deliberately
+contains ARM assembly and STM32 register addresses; native host programs do
+not compile that board code.
+
+Verification status
+
+Windows x86-64: baseline and new runtime/HMAC/model unit tests passed locally.
+Cortex-M4 ARM: compiled locally and passed 1815 sensor/serial observations
+and a separate 600-second closed-loop run with 6001 samples in Renode.
+Windows ARM64, macOS Intel/ARM64, Linux x86-64/ARM64: native CI builds and
+host suites passed. Evidence includes compiler target triples and results.
+Physical STM32 hardware and 32-bit x86 host execution have not been tested.
+
+Security limits
+
+The demonstration key 00..1f is public test data. HMAC does not encrypt serial
+traffic and does not prevent replay. Sensor RAM and the emulator host are
+trusted. The project does not claim production key storage or physical safety
+certification. The bounded controller models one tank, sensor and inlet valve.

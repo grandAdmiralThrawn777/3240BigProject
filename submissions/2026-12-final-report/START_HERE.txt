@@ -1,0 +1,8 @@
+CYCS 3240 Final Report - Finley Burns
+Report/Final_Report_Finley_Burns.pdf is the submission document.
+USER_GUIDE.txt gives the build and test commands for Windows, macOS and Linux.
+PORTABILITY.txt distinguishes x86-64, ARM64 and embedded Cortex-M4 targets.
+Source, Scripts, Test_Data and Third_Party are the complete build inputs.
+Evidence contains raw native, ARM and six-platform CI results.
+Authoring contains the IEEE source and figure generator.
+The final presentation is a separate submission package.

@@ -1,0 +1,6 @@
+GitHub Actions run 42890613662
+Commit edd7401
+https://github.com/grandAdmiralThrawn777/3240BigProject/actions/runs/42890613662
+All six host jobs passed, including the November 12 submission baseline.
+Compiler triples in each archive identify the actual x86-64 or ARM64 build.
+These are unmodified artifacts downloaded from that completed run.

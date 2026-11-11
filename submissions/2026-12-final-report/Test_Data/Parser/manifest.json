@@ -1,0 +1,117 @@
+[
+  {
+    "file": "truncated.csv",
+    "expected_exit": 2,
+    "bytes": 21
+  },
+  {
+    "file": "overflow.csv",
+    "expected_exit": 2,
+    "bytes": 24
+  },
+  {
+    "file": "huge_integer.csv",
+    "expected_exit": 2,
+    "bytes": 119
+  },
+  {
+    "file": "extra.csv",
+    "expected_exit": 2,
+    "bytes": 25
+  },
+  {
+    "file": "oversized.csv",
+    "expected_exit": 2,
+    "bytes": 301
+  },
+  {
+    "file": "empty.csv",
+    "expected_exit": 2,
+    "bytes": 0
+  },
+  {
+    "file": "embedded_nul.csv",
+    "expected_exit": 2,
+    "bytes": 29
+  },
+  {
+    "file": "negative.csv",
+    "expected_exit": 2,
+    "bytes": 21
+  },
+  {
+    "file": "nonnumeric.csv",
+    "expected_exit": 2,
+    "bytes": 22
+  },
+  {
+    "file": "plus.csv",
+    "expected_exit": 2,
+    "bytes": 24
+  },
+  {
+    "file": "space.csv",
+    "expected_exit": 2,
+    "bytes": 24
+  },
+  {
+    "file": "boolean.csv",
+    "expected_exit": 2,
+    "bytes": 23
+  },
+  {
+    "file": "empty_field.csv",
+    "expected_exit": 2,
+    "bytes": 22
+  },
+  {
+    "file": "trailing_text.csv",
+    "expected_exit": 2,
+    "bytes": 30
+  },
+  {
+    "file": "comments_only.csv",
+    "expected_exit": 2,
+    "bytes": 10
+  },
+  {
+    "file": "ctrl_z.csv",
+    "expected_exit": 2,
+    "bytes": 30
+  },
+  {
+    "file": "too_long_256.csv",
+    "expected_exit": 2,
+    "bytes": 256
+  },
+  {
+    "file": "nul_in_comment.csv",
+    "expected_exit": 2,
+    "bytes": 40
+  },
+  {
+    "file": "lf.csv",
+    "expected_exit": 0,
+    "bytes": 23
+  },
+  {
+    "file": "crlf.csv",
+    "expected_exit": 0,
+    "bytes": 26
+  },
+  {
+    "file": "no_final_newline.csv",
+    "expected_exit": 0,
+    "bytes": 22
+  },
+  {
+    "file": "limit_255.csv",
+    "expected_exit": 0,
+    "bytes": 255
+  },
+  {
+    "file": "wrong_expectation.csv",
+    "expected_exit": 1,
+    "bytes": 23
+  }
+]

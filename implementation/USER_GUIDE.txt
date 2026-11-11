@@ -1,0 +1,91 @@
+Secure Embedded Water Tank Controller
+Finley Burns - CYCS 3240
+
+Run the host tests
+
+Install Python 3.9 or newer and a C17 compiler. Use native x86-64 tools on an
+x86-64 host, or native ARM64 tools on an ARM64 host. Windows, macOS and Linux
+use the same source and fixture files.
+
+From this directory, run:
+    python Scripts/generate_runtime_tests.py
+    python Scripts/run_baseline.py --cc gcc
+    python Scripts/test_runtime.py --cc gcc
+    python Scripts/test_tank.py --cc gcc
+
+On macOS/Linux, python3 and --cc cc are usual choices. On Windows, py -3 can
+replace python. MinGW-w64 GCC works on x86-64 Windows. For Windows Clang,
+open the matching Visual Studio x64 or ARM64 developer environment and use
+--cc clang. All subprocess arguments are passed directly, without a shell.
+Use a quoted compiler path after --cc if it is outside PATH.
+
+Each run prints PASS or FAIL and the path of a new Runs/ directory. Inspect
+summary.json and the saved output. Failed checks return a nonzero process
+status. Existing Evidence/ files are never overwritten by a new test run.
+Build/ contains the current local executables, compiler commands and target.
+
+On macOS/Linux with supported compiler runtimes, add --sanitize to
+Scripts/test_runtime.py for AddressSanitizer and UndefinedBehaviorSanitizer.
+The Windows GCC installation used locally did not provide libubsan. CI ran
+the combined sanitizer checks on both architectures of macOS and Linux.
+
+Build and test the ARM firmware
+
+Install a GNU Arm Embedded compiler and Renode 1.17.0 for your host. Then run:
+    python Scripts/build.py --firmware --cc arm-none-eabi-gcc
+    python Scripts/test_firmware.py --renode renode --nm arm-none-eabi-nm
+
+The controller.elf target is Cortex-M4, regardless of the host processor.
+The Python adapter starts Renode's console without a GUI. Robot Framework,
+Cygwin and WSL are not needed by this adapter. Run only one Renode adapter
+at a time: simultaneous console instances can collide in Renode's history
+file on Windows. Each test saves the monitor transcript and assertions.
+
+For closed-loop ARM testing, build the host model first, then run:
+    python Scripts/test_renode_tank.py --model Build/amd64/tank_model.exe
+
+Use your actual Build/<architecture>/tank_model path, without .exe on Unix.
+--renode and --nm accept executable paths. The default run lasts 600 model
+seconds. --seconds accepts 1 through 3600. A shorter run is useful for a
+setup check; it does not replace the recorded 600-second evaluation.
+
+Test input files
+
+Test_Data/Control and Test_Data/Parser hold the original control/parser suite.
+Test_Data/Runtime/manifest.json names the runtime CSV cases and assertions.
+Runtime rows contain now_ms, level_bp, sample_ms, valid, period_ms and received
+bytes in lowercase hexadecimal; '-' means no input. Configuration changes
+become visible after the complete authenticated command is parsed. The next
+control tick uses those settings. firmware.json drives real Renode sensor
+and UART input. tank.json supplies tank durations, periods, rates and events.
+Test_Data/Planned preserves the earlier design inputs; Runtime is executed.
+
+Serial commands
+
+The format is SET,low,high,tag followed by LF. Numbers are decimal, without
+signs, spaces or leading zeroes. The tag is 64 lowercase hexadecimal digits.
+HMAC-SHA256 covers the bytes SET,low,high, excluding the final comma, tag and
+newline. Both settings change together after format, tag and range checks.
+The public demonstration key contains bytes 00 through 1f. The command below
+writes a valid command to a file for inspection or UART injection:
+    python Scripts/make_command.py 2000 8000 command.txt
+
+The buffer allows 128 bytes before LF. The queue holds 256 bytes. The loop
+processes at most 32 bytes and one completed line per control tick. Oversized
+or malformed input is discarded through LF. Overflow drops queued input and
+requires a new LF before accepting another command. A partial line expires
+when its age exceeds 500 ms. That age starts when the main loop processes
+its first byte, not at physical UART arrival.
+
+Limits
+
+The default firmware period is 100 ms. The 50/100/500 ms sweep is a native
+controller/model test. At 500 ms, the unchanged parser timeout is too short
+for a multi-cycle 80-byte command; the firmware does not use that setting.
+The demo has no encryption, replay prevention or protected key storage.
+The host, sensor RAM and emulator are trusted. A stuck-open valve is modeled
+but not diagnosed by firmware. Results establish simulated behavior, not
+physical-device timing, ADC accuracy, electrical behavior or deployment safety.
+
+The November deliverables are earlier design snapshots. Use this directory
+and the final report for the later implementation and measured results.

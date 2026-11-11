@@ -117,6 +117,25 @@ def main():
     build_folder = build(args.cc)
     directory = Path(tempfile.mkdtemp(prefix='tank-', dir=ROOT/'Runs'))
     data = json.loads((ROOT/'Test_Data/Runtime/tank.json').read_text())
+    for specification in data['runs']:
+        duration = specification['duration_ms']
+        period = specification['period_ms']
+        if type(duration) is not int or type(period) is not int or period not in [50, 100, 500] or not 0 < duration <= 3600000 or duration % period:
+            raise ValueError('Invalid tank duration or sample period')
+        for field in ['inlet_ul_s', 'demand_ul_s']:
+            if type(specification[field]) is not int or not 0 <= specification[field] <= 3000000:
+                raise ValueError('Invalid tank flow rate')
+        if specification['profile'] not in ['normal', 'demand', 'shortage', 'stuck_open']:
+            raise ValueError('Unknown tank profile')
+        if not specification['name'].replace('_', '').isalnum():
+            raise ValueError('Invalid output name')
+    for event in data['events']:
+        if type(event['time_ms']) is not int or not 0 <= event['time_ms'] <= 3600000 or event['time_ms'] % 500:
+            raise ValueError('Invalid event time')
+        if event['event'] not in ['drain_ul_s', 'force_open'] or type(event['value']) is not int:
+            raise ValueError('Invalid event')
+        if not 0 <= event['value'] <= (3000000 if event['event'] == 'drain_ul_s' else 1):
+            raise ValueError('Invalid event value')
     report = {'status': 'INCOMPLETE', 'platform': platform.platform(), 'architecture': platform.machine(),
               'execution': 'Native C closed-loop simulation, not Renode', 'runs': []}
     try:

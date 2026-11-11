@@ -1,5 +1,5 @@
 // Run independent control cases from a file.
-// The tank model, command parser, and authentication are still planned.
+// Other runners cover the tank model, serial commands, and authentication.
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

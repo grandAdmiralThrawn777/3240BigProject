@@ -1,37 +1,30 @@
 Secure Embedded Water Tank Controller
 Finley Burns - CYCS 3240
 
-I am building a C17 controller for one simulated tank, sensor and inlet valve.
-The valve opens below the low threshold, closes above the high threshold,
-and keeps its previous state between them and at either endpoint.
+All five assignment goals are complete.
 
-Submissions
-  November 12: submissions/2026-11-12-testing-design
-  November 17: submissions/2026-11-17-design-presentation
-  November 19: submissions/2026-11-19-comprehensive-design
-  December final report: drafts/final-report (unfinished)
+SUBMISSIONS
+November 12 testing design: submissions/2026-11-12-testing-design
+November 17 design presentation: submissions/2026-11-17-design-presentation
+November 19 comprehensive design: submissions/2026-11-19-comprehensive-design
+December final report: submissions/2026-12-final-report
+December final presentation: submissions/2026-12-final-presentation
 
-The three November deliverables are ready. Each report has one PDF plus its
-supporting files. Presentation slides are editable PPTX with speaking notes.
-Download packages/ for the organized submission ZIPs.
+Download packages/ for the submission ZIPs. Each written assignment has one
+PDF plus supporting files. Presentations have editable PPTX and speaking notes.
 
-Implementation
-  implementation/Source: shared C code, host programs, ARM firmware
-  implementation/Test_Data: inputs read from files
-  implementation/Scripts: portable build and test commands
-  implementation/Evidence: recorded local results
-  implementation/PORTABILITY.txt: OS and processor instructions
+IMPLEMENTATION
+implementation/ contains C17 source, Python build/test scripts, file inputs,
+Mbed TLS source and its license. Read USER_GUIDE.txt and PORTABILITY.txt.
+Native host tests passed on Windows, macOS and Linux on both x86-64 and ARM64.
+Cortex-M4 ARM firmware separately passed sensor, serial and closed-loop tests
+in Renode. The final report explains the measured results and their limits.
 
-Host builds target x86-64 and ARM64 on Windows, macOS and Linux. The separate
-embedded target is Cortex-M4 ARM in Renode. The Actions workflow checks each
-host OS/processor pair. Read the actual job results before calling a platform
-verified. Windows x86-64 tests passed locally; ARM firmware compiled and its
-first GPIO test ran in Renode. System integration is still in progress.
-
-The November submissions are milestone snapshots. The final implementation
-directory contains later work and may be ahead of those documents. The final
-report and presentation remain open goals until testing and analysis finish.
-
-The HMAC key is public demonstration data. Commands are authenticated but not
-encrypted, and replay is not prevented. Private handoff and chat files are
-excluded from this repository.
+EVIDENCE
+The final report submission includes raw traces, 18 native tank runs, 1815
+ARM sensor/serial observations, 6001 ARM feedback samples, six-platform CI
+artifacts and a fresh-extraction verification. Every package has file hashes.
+November documents preserve their design-stage scope; the final report
+describes the later implementation. The public key is demonstration data.
+HMAC does not encrypt commands or prevent replay. Physical hardware was not
+tested. Private handoff files and conversation history are not included.

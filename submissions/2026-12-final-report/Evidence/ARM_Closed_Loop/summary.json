@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "target": "Actual Cortex-M4 ELF in Renode with C model feedback",
+  "elf_sha256": "b52b6609ec0e5cbfb5744eb36ae159f07889b374a9c57e4c4fecc25525f41d78",
+  "duration_s": 600,
+  "steps": 6001,
+  "minimum_bp": 2990,
+  "maximum_bp": 7010,
+  "final_ul": 47000000,
+  "wall_seconds": 121.6880000000001
+}

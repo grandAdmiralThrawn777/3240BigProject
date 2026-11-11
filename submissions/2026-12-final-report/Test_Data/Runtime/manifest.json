@@ -1,0 +1,522 @@
+[
+  {
+    "name": "age_and_recovery",
+    "file": "age_and_recovery.csv",
+    "expected_exit": 0,
+    "checks": {
+      "0": {
+        "open": 1,
+        "fault": 0
+      },
+      "1": {
+        "open": 1,
+        "fault": 0
+      },
+      "2": {
+        "open": 1,
+        "fault": 0
+      },
+      "3": {
+        "open": 0,
+        "fault": 1
+      },
+      "4": {
+        "open": 1,
+        "fault": 0
+      },
+      "5": {
+        "open": 0,
+        "fault": 1
+      },
+      "6": {
+        "open": 0,
+        "fault": 1
+      },
+      "7": {
+        "open": 0,
+        "fault": 1
+      },
+      "8": {
+        "open": 1,
+        "fault": 0
+      },
+      "9": {
+        "open": 1,
+        "fault": 0
+      },
+      "10": {
+        "open": 0,
+        "fault": 0
+      }
+    }
+  },
+  {
+    "name": "deadline",
+    "file": "deadline.csv",
+    "expected_exit": 0,
+    "checks": {
+      "0": {
+        "open": 1
+      },
+      "1": {
+        "open": 1,
+        "deadlines": 0
+      },
+      "2": {
+        "open": 0,
+        "fault": 1,
+        "deadlines": 1
+      },
+      "3": {
+        "open": 1,
+        "fault": 0
+      }
+    }
+  },
+  {
+    "name": "wrap",
+    "file": "wrap.csv",
+    "expected_exit": 0,
+    "checks": {
+      "1": {
+        "open": 1,
+        "fault": 0
+      },
+      "2": {
+        "open": 1
+      },
+      "3": {
+        "open": 1
+      },
+      "4": {
+        "fault": 1,
+        "open": 0
+      }
+    }
+  },
+  {
+    "name": "periods",
+    "file": "periods.csv",
+    "expected_exit": 0,
+    "checks": {
+      "0": {
+        "ran": 1,
+        "open": 1,
+        "deadlines": 0
+      },
+      "1": {
+        "ran": 1,
+        "open": 1,
+        "deadlines": 0
+      },
+      "2": {
+        "ran": 1,
+        "open": 1,
+        "deadlines": 0
+      },
+      "3": {
+        "ran": 1,
+        "open": 1,
+        "deadlines": 0
+      }
+    }
+  },
+  {
+    "name": "command_valid",
+    "file": "command_valid.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 1,
+        "low": 2000,
+        "high": 8000,
+        "auth": 1
+      }
+    }
+  },
+  {
+    "name": "command_wrong_key",
+    "file": "command_wrong_key.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_modified",
+    "file": "command_modified.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_equal",
+    "file": "command_equal.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_reversed",
+    "file": "command_reversed.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_range",
+    "file": "command_range.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_uint_overflow",
+    "file": "command_uint_overflow.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_huge_integer",
+    "file": "command_huge_integer.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_leading_zero",
+    "file": "command_leading_zero.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_negative",
+    "file": "command_negative.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_plus",
+    "file": "command_plus.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_space",
+    "file": "command_space.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_nul",
+    "file": "command_nul.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_nonhex",
+    "file": "command_nonhex.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_uppercase",
+    "file": "command_uppercase.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_short_tag",
+    "file": "command_short_tag.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_long_tag",
+    "file": "command_long_tag.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_missing_tag",
+    "file": "command_missing_tag.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_extra_field",
+    "file": "command_extra_field.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "command_crlf",
+    "file": "command_crlf.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 0,
+        "low": 3000,
+        "high": 7000
+      }
+    }
+  },
+  {
+    "name": "apply_next_tick",
+    "file": "apply_next_tick.csv",
+    "expected_exit": 0,
+    "checks": {
+      "2": {
+        "accepted": 1,
+        "low": 1000,
+        "open": 1
+      },
+      "3": {
+        "open": 0
+      }
+    }
+  },
+  {
+    "name": "replay",
+    "file": "replay.csv",
+    "expected_exit": 0,
+    "checks": {
+      "8": {
+        "accepted": 3,
+        "low": 2000,
+        "high": 8000
+      }
+    }
+  },
+  {
+    "name": "timeout_recovery",
+    "file": "timeout_recovery.csv",
+    "expected_exit": 0,
+    "checks": {
+      "5": {
+        "rejected": 0
+      },
+      "8": {
+        "accepted": 1,
+        "rejected": 1
+      }
+    }
+  },
+  {
+    "name": "overflow_recovery",
+    "file": "overflow_recovery.csv",
+    "expected_exit": 0,
+    "checks": {
+      "0": {
+        "queued": 0,
+        "overflows": 1,
+        "accepted": 0
+      },
+      "4": {
+        "accepted": 1
+      }
+    }
+  },
+  {
+    "name": "queue_256",
+    "file": "queue_256.csv",
+    "expected_exit": 0,
+    "checks": {
+      "0": {
+        "queued": 256,
+        "overflows": 0
+      },
+      "1": {
+        "queued": 224,
+        "bytes": 32
+      }
+    }
+  },
+  {
+    "name": "flood_safety",
+    "file": "flood_safety.csv",
+    "expected_exit": 0,
+    "checks": {
+      "5": {
+        "open": 0,
+        "fault": 1
+      },
+      "9": {
+        "deadlines": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_127",
+    "file": "line_length_127.csv",
+    "expected_exit": 0,
+    "checks": {
+      "6": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_128",
+    "file": "line_length_128.csv",
+    "expected_exit": 0,
+    "checks": {
+      "7": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_129",
+    "file": "line_length_129.csv",
+    "expected_exit": 0,
+    "checks": {
+      "7": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "line_length_1024",
+    "file": "line_length_1024.csv",
+    "expected_exit": 0,
+    "checks": {
+      "35": {
+        "accepted": 1,
+        "low": 2000,
+        "overflows": 0
+      }
+    }
+  },
+  {
+    "name": "valid_endpoints",
+    "file": "valid_endpoints.csv",
+    "expected_exit": 0,
+    "checks": {
+      "2": {
+        "accepted": 1,
+        "low": 0,
+        "high": 10000
+      }
+    }
+  },
+  {
+    "name": "repeated_auth",
+    "file": "repeated_auth.csv",
+    "expected_exit": 0,
+    "checks": {
+      "2999": {
+        "accepted": 1000,
+        "rejected": 0,
+        "auth": 1000
+      }
+    }
+  }
+]

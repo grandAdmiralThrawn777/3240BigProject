@@ -37,9 +37,10 @@ not compile that board code.
 Verification status
 
 Windows x86-64: baseline and new runtime/HMAC/model unit tests passed locally.
-Cortex-M4 ARM: compiled locally; emulator integration is being verified.
-Windows ARM64, macOS Intel/ARM64, Linux x86-64/ARM64: CI routes are provided;
-use the individual CI job results as evidence, not this portability claim.
+Cortex-M4 ARM: compiled locally and passed 1815 sensor/serial observations
+and a separate 600-second closed-loop run with 6001 samples in Renode.
+Windows ARM64, macOS Intel/ARM64, Linux x86-64/ARM64: native CI builds and
+host suites passed. Evidence includes compiler target triples and results.
 Physical STM32 hardware and 32-bit x86 host execution have not been tested.
 
 Security limits

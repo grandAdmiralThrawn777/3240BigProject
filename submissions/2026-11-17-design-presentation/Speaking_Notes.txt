@@ -1,35 +1,35 @@
 SLIDE 1 - Secure Embedded Water Tank Controller
 
-I am building a C controller for one simulated water tank. The main question is whether it can make the right valve decisions while rejecting invalid or unauthorized settings changes. I will explain the design, show what the existing tests establish, and identify the parts I still need to implement. This presentation describes the design as of November 10. It does not claim that the complete tank simulation or authentication is already working.
+I designed a C17 controller for one simulated water tank. I will explain the control rule, the sensor and serial interfaces, and how I test them. The implementation has progressed since the preliminary design. I will separate the design choices from the results that now verify them.
 
 SLIDE 2 - Project scope
 
-I kept the scope small so the control behavior and security checks are manageable. The tank is simulated, so I do not need a physical board or plumbing. I originally proposed Rust, but switched to C because the course requires C or C++. Renode still supplies the emulated processor and peripherals. The serial interface is enough for this project, so I am not adding networking or a dashboard. Source: comprehensive design, project scope; https://renode.readthedocs.io/en/latest/introduction/testing.html
+I kept the scope small so the control behavior and security checks are manageable. The tank is simulated, so I do not need a physical board or plumbing. I originally proposed Rust, but switched to C because the course requires C or C++. Renode still supplies the emulated processor and peripherals. The serial interface is enough for this project, so I am not adding networking or a dashboard. Source: comprehensive design, project scope; https://renode.readthedocs.io/en/latest/introduction/testing.html The native host tools support x86-64 and ARM64 on Windows, macOS and Linux. Cortex-M4 is the separate embedded ARM target. All six host CI jobs now pass.
 
 SLIDE 3 - Valve decisions
 
 The controller uses hysteresis. Two thresholds give the valve a clear operating range instead of making it switch around one target. The exact endpoints matter: at 30 or 70 percent, the previous state stays in place. The tests check both an initially open and initially closed valve. When valid sensor input returns after a fault, the usual rule resumes. If the reading is between the thresholds, the valve remains closed because the fault closed it. Source: Source/src/controller.c and file-driven control tests.
 
-SLIDE 4 - The planned control loop
+SLIDE 4 - The control loop
 
-The control step runs before command processing. I plan to treat a sample as stale when it is more than 300 milliseconds old. The current firmware has one fixed reading, so the timer and changing sensor interface are still work to complete. For the first integration I will use a documented record in emulated RAM to inject the level and timestamp. That tests the control loop, but does not establish ADC or electrical behavior. The host tank model will use the measured valve output to calculate the next volume. Sources: comprehensive design; ST RM0090 reference manual.
+The control decision runs every 100 milliseconds. A sensor sample older than 300 milliseconds is invalid. A sequence number protects the RAM sensor record against a partial update, and the level is checked before conversion. The firmware calculates the control decision before bounded serial service, then writes the GPIO when that service returns. This differs slightly from the original immediate-GPIO pseudocode. The measured load tests kept the virtual schedule. Source: final report, firmware and ARM sensor/serial evidence.
 
-SLIDE 5 - Planned command checks
+SLIDE 5 - Command checks
 
-The planned command carries a low threshold, a high threshold, and an authentication tag. I will use an established library such as Mbed TLS and check published HMAC test vectors before using it in the firmware. A valid tag is not enough: reversed thresholds or a value above the allowed range must still be rejected. Both settings are installed together. Authentication is not implemented yet. An earlier valid command can still be replayed because this design has no nonce or counter. Sources: https://github.com/Mbed-TLS/mbedtls and https://www.rfc-editor.org/rfc/rfc4231.html
+The command contains two thresholds and an HMAC-SHA256 tag. Mbed TLS 3.6.7 verifies the tag. Format, conversion and range checks still apply, and both settings change together only after the complete command passes. The next control tick uses the new settings. Replay is accepted because the design has no nonce or counter, and HMAC does not encrypt traffic. Five HMAC checks and invalid-command cases passed. Sources: final report; Mbed TLS 3.6.7 release; RFC 4231.
 
 SLIDE 6 - Keeping control running
 
-C requires explicit checks around buffers and conversions. The proposed receive queue holds 256 bytes, and a command line is limited to 128 bytes before its newline. A partial line expires after 500 milliseconds. These limits are intended to keep input work from taking over the control loop. I will test a malformed stream of 1000 bytes per second and inject a sensor fault during that stream. The valve must still close at the next scheduled control step. These timing limits are targets, not measured firmware results. Sources: testing design L01; https://cmu-sei.github.io/secure-coding-standards/sei-cert-c-coding-standard/
+The queue holds 256 bytes and the line buffer allows 128 bytes before LF. The loop processes at most 32 bytes and one completed line per tick. Oversized input is discarded through LF; a partial line expires above 500 milliseconds. The timer and IRQ handling are implemented. Three 60-second Renode load modes, including a 1000-byte-per-second malformed flood, recorded no missed deadlines. The injected sensor fault closed the GPIO on its checked tick. This establishes virtual timing, not physical timing. Source: Evidence/ARM_Sensor_Serial.
 
-SLIDE 7 - Tests completed on Windows
+SLIDE 7 - Tests completed
 
-These are results from the native C programs on Windows with MinGW GCC 16.1.0. The 69 cases include the original 15 and 54 added boundary cases. The sequence test checks decisions over time and recovery from faults. The 23 parser files include four accepted inputs, 18 rejected files, and one deliberately wrong expected result. The runner correctly reports that mismatch. I am not combining these different checks into a coverage percentage. They do not test the future authentication or firmware timing. Source: Evidence/Windows_Host/summary.json in the November 12 package.
+The baseline also includes 23 parser files and three invocation-error checks. The runtime suite covers invalid input, age, overflow, timeout, replay and repeated authentication. I checked the actual compiler target triples in CI to establish native x86-64 and ARM64 execution. The Cortex-M4 firmware separately ran 1815 sensor/serial observations and a 600-second closed-loop model test in Renode. Sources: final report Evidence directories; GitHub Actions run 42890613662.
 
-SLIDE 8 - Planned system tests
+SLIDE 8 - System tests
 
-The default tank model will hold 100 liters and start at 50 liters, with 2 liters per second entering through an open inlet and 1 liter per second leaving. A normal run will last 600 simulated seconds and repeat three times. I will also test a shortage and a valve forced open. Those cases distinguish an incorrect controller decision from a condition the controller cannot physically correct. These tests are specified in files, but the model and adapter still need implementation. Source: Test_Data/Planned and the November 12 testing design.
+The C model holds 100 litres and starts at 50, with two litres per second entering through an open inlet and one leaving under normal demand. Eighteen native runs cover changing demand, shortage, a stuck-open valve, one hour of operation, and three sampling periods. The normal native and ARM feedback runs both measured 29.9 to 70.1 percent. The full abnormal-flow and sampling matrix ran natively, while Renode tested one normal closed-loop case plus sensor and serial-load cases. Source: final report and tank evidence.
 
-SLIDE 9 - What comes next
+SLIDE 9 - December submission
 
-The host control tests and the fixed-reading firmware give me a starting point. My next step is to verify the sensor and timer path in Renode, then add the command handling and connect the model. I have a common host runner for Windows, macOS, and Linux, but the expanded tests have only run on Windows so far. I will keep unavailable tools and unfinished tests visible in the final report. The goal is a complete, repeatable evaluation, not just a successful boot message. I can take questions about the control rule, test inputs, or security limits.
+The report and supporting files are prepared, and the final package passed a fresh extraction check. I have kept the November documents as design milestones and the later implementation in its own directory. The main remaining limits are physical hardware, ADC behavior, protected key storage, encryption and replay prevention. They are outside the current implementation. I can answer questions about the interfaces, threshold rule or testing choices. Source: final report and USER_GUIDE.txt.

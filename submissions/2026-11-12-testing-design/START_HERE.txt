@@ -73,8 +73,8 @@ ARM/Renode: historical macOS result only; not run in this Windows session.
 
 PROCESSOR SUPPORT
 The host source is intended for native x86-64 and ARM64 builds on each OS.
-Use the native compiler for your processor. Windows x86-64 is verified in
-this milestone; other host/processor pairs remain unverified here.
+Use the native compiler for your processor. Windows, macOS and Linux
+host tests passed on both x86-64 and ARM64 in the recorded CI run.
 The separate embedded target is 32-bit Cortex-M4 ARM, not ARM64.
 The embedded-NUL input is named embedded_nul.csv to avoid a Windows
 reserved filename. Its bytes and expected rejection are unchanged.

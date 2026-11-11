@@ -1,0 +1,69 @@
+{
+  "status": "DESIGN ONLY - no tank model or Renode adapter implemented",
+  "capacity_l": 100,
+  "initial_l": 50,
+  "initial_valve_open": false,
+  "low_bp": 3000,
+  "high_bp": 7000,
+  "sample_ms": 100,
+  "max_sample_age_ms": 300,
+  "sensor_quantization_bp": 1,
+  "rounding": "floor(10000 * volume_l / capacity_l)",
+  "event_order": "apply events; sample; controller; advance volume using actual valve",
+  "event_file": "tank_events.csv",
+  "runs": [
+    {
+      "id": "T01",
+      "profile": "normal",
+      "duration_s": 600,
+      "inlet_lps": 2,
+      "drain_lps": 1,
+      "repetitions": 3
+    },
+    {
+      "id": "T02",
+      "profile": "demand",
+      "duration_s": 600,
+      "inlet_lps": 2,
+      "drain_lps": 1,
+      "repetitions": 3
+    },
+    {
+      "id": "T03",
+      "profile": "shortage",
+      "duration_s": 600,
+      "inlet_lps": 2,
+      "drain_lps": 3,
+      "repetitions": 1
+    },
+    {
+      "id": "T04",
+      "profile": "stuck_open",
+      "duration_s": 120,
+      "inlet_lps": 2,
+      "drain_lps": 1,
+      "repetitions": 1
+    },
+    {
+      "id": "T05",
+      "profile": "normal",
+      "duration_s": 3600,
+      "inlet_lps": 2,
+      "drain_lps": 1,
+      "repetitions": 1
+    },
+    {
+      "id": "T06",
+      "profile": "normal",
+      "duration_s": 600,
+      "sample_ms_values": [
+        50,
+        100,
+        500
+      ],
+      "inlet_lps": 2,
+      "drain_lps": 1,
+      "repetitions": 3
+    }
+  ]
+}

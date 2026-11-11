@@ -1,0 +1,45 @@
+{
+  "folder": "C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Scripts\\run_baseline.py"
+      ],
+      "exit": 0,
+      "stdout": "PASS: Host C tests only. ARM, Renode, tank feedback, timing and authentication NOT RUN.\nResults: C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Runs\\20261110T200620Z-wkt50tk3\n69 independent cases; 18 sequence steps; 23 parser fixtures; 3 invocation errors.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Scripts\\test_runtime.py"
+      ],
+      "exit": 0,
+      "stdout": "Built: C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Build\\amd64 Compiler target: x86_64-w64-mingw32\nPASS C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Runs\\runtime-hzc6cjkh\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Scripts\\test_tank.py"
+      ],
+      "exit": 0,
+      "stdout": "Built: C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Build\\amd64 Compiler target: x86_64-w64-mingw32\nPASS C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Runs\\tank-yberg_49\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Scripts\\build.py",
+        "--firmware",
+        "--cc",
+        "C:\\Users\\Administrator\\water-tank-study\\tools\\arm-gcc\\xpack-arm-none-eabi-gcc-15.2.1-1.1\\bin\\arm-none-eabi-gcc.exe"
+      ],
+      "exit": 0,
+      "stdout": "Built: C:\\Users\\Administrator\\water-tank-study\\tmp\\Final fresh extraction (portable) zyyigz8p\\Build\\cortex-m4 Compiler target: arm-none-eabi\n",
+      "stderr": ""
+    }
+  ],
+  "status": "PASS"
+}

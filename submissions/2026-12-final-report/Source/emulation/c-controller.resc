@@ -1,0 +1,3 @@
+mach create "c-water-tank"
+machine LoadPlatformDescription $ORIGIN/tank.repl
+sysbus LoadELF $ORIGIN/../../Build/cortex-m4/controller.elf

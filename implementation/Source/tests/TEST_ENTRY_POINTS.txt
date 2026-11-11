@@ -1,0 +1,5 @@
+The current integration tests are Scripts/test_firmware.py and
+Scripts/test_renode_tank.py. They use Renode's console directly.
+
+The old fixed-reading Robot test belongs to the November 12 milestone and
+is preserved in that submission. It does not describe the current firmware.
