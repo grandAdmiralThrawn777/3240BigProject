@@ -63,8 +63,8 @@
   {
     "title": "Tank results",
     "lines": [
-      "Normal demand: 29.9–70.1% over 600 seconds",
-      "Changing demand: 29.85–70.15%",
+      "Normal demand: 29.9% to 70.1% over 600 seconds",
+      "Changing demand: 29.85% to 70.15%",
       "The ARM feedback run matched the normal result",
       "The one-hour native run checked 36,001 samples"
     ],
@@ -73,9 +73,9 @@
   {
     "title": "Sampling period",
     "lines": [
-      "50 ms: 29.95–70.05%",
-      "100 ms: 29.90–70.10%",
-      "500 ms: 29.50–70.50%",
+      "50 ms: 29.95% to 70.05%",
+      "100 ms: 29.90% to 70.10%",
+      "500 ms: 29.50% to 70.50%",
       "Longer intervals allow more overshoot before a decision"
     ],
     "notes": "These are the measured ranges from the native sampling sweep. Each period was tested three times. The valve retains its state at the threshold, then reacts to the next reading beyond it. More water can enter or leave during a longer interval, which explains the wider range. The actual firmware stays at 100 milliseconds. The 500-millisecond experiment evaluates control and the model; it does not establish usable serial command reception with the unchanged 500-millisecond partial-line timeout. Source: T06 traces and summary in Evidence/Windows_x86_64_Tank."
@@ -98,7 +98,7 @@
       "No missed control deadlines were recorded",
       "The sensor fault closed the valve on its test tick"
     ],
-    "notes": "The firmware consumes at most 32 bytes and one completed line per 100-millisecond tick. The malformed flood therefore exceeded the service budget and caused queue overflow. The run recorded 1200 dropped bytes. The sensor fault was injected during that traffic, and the emulated GPIO still closed on the checked control tick. After a newline resynchronized the parser, a valid command was accepted. The combined sensor and load sequence checked 1815 ticks. This is virtual-time evidence, not a physical timing certification. Source: Evidence/ARM_Sensor_Serial/summary.json and monitor.log."
+    "notes": "The firmware consumes at most 32 bytes and one completed line per 100-millisecond tick. The malformed flood therefore exceeded the service budget and caused queue overflow. The adapter injected 100-byte bursts every 100 milliseconds. The full-queue counter recorded 1200 rejected incoming bytes; recovery also discarded queued data. The sensor fault was injected during that traffic, and the emulated GPIO still closed on the checked control tick. After a newline resynchronized the parser, a valid command was accepted. The combined sensor and load sequence checked 1815 ticks. This is virtual-time evidence, not a physical timing certification. Source: Evidence/ARM_Sensor_Serial/summary.json and monitor.log."
   },
   {
     "title": "Limits",

@@ -20,7 +20,7 @@ function text(slide,name,value,x,y,w,h,size=30,bold=false,color='#111111') {
  shape.text.insets=0;
  return shape;
 }
-await fs.mkdir(path.join(build,'final-previews'),{recursive:true});
+await fs.mkdir(path.join(build,'final-verified-previews'),{recursive:true});
 await fs.mkdir(output,{recursive:true});
 for (const [i,data] of slides.entries()) {
  const s=p.slides.add(); s.background.fill='#FFFFFF';
@@ -36,11 +36,11 @@ for (const [i,data] of slides.entries()) {
  text(s,'page',String(i+1),1165,664,40,25,17,false,'#555555');
  s.speakerNotes.text=data.notes;
  const png=await p.export({slide:s,format:'png',scale:1});
- await fs.writeFile(path.join(build,'final-previews',`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await png.arrayBuffer()));
+ await fs.writeFile(path.join(build,'final-verified-previews',`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await png.arrayBuffer()));
 }
-const candidate=path.join(build,'final-candidate.pptx');
+const candidate=path.join(build,'final-verified-candidate.pptx');
 await (await PresentationFile.exportPptx(p)).save(candidate);
-const finalPath=path.join(output,'Final_Presentation_Finley_Burns.pptx');
+const finalPath=path.join(output,'Final_Presentation_Finley_Burns_Verified.pptx');
 const result=await finalizePresentation({
  workspaceDir,candidatePath:candidate,finalPath,
  pythonExecutable:path.join(runtime,'dependencies/python/python.exe'),
@@ -49,7 +49,7 @@ const result=await finalizePresentation({
  layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit'],
  explicitTotalSlideCount:slides.length,requiredNativeTableOwnerSlides:[],requiredNativeChartOwnerSlides:[],
  fontPolicy:{basis:'design',families:['Arial']},verifyArtifactToolImport:true,
- receiptPath:path.join(build,'final-reviewed-validation.json')
+ receiptPath:path.join(build,'final-verified-validation.json')
 });
 await fs.writeFile(path.join(output,'Speaking_Notes.txt'),slides.map((s,i)=>`SLIDE ${i+1} - ${s.title.replaceAll('\n',' ')}\n\n${s.notes}\n`).join('\n'));
 await fs.writeFile(path.join(workspaceDir,'next-submissions/Authoring/final_slides.json'),JSON.stringify(slides,null,2)+'\n');

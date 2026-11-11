@@ -1,0 +1,7 @@
+{
+  "host_os": "Windows",
+  "host_arch": "AMD64",
+  "compiler_target": "x86_64-w64-mingw32",
+  "firmware": false,
+  "sanitizers": false
+}
